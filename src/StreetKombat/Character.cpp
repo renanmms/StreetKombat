@@ -10,7 +10,6 @@
 #include "SpriteComponent.h"
 #include "InputComponent.h"
 #include "Game.h"
-#include "Laser.h"
 
 Character::Character(Game* game, std::string name)
 	:Actor(game)
@@ -55,4 +54,8 @@ void Character::ActorInput(const uint8_t* keyState)
 		// Reset cooldown (half second)
 		mHitCooldown = 0.5f;
 	}
+}
+
+void Character::Hit(float damage)
+{
 }

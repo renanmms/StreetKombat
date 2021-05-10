@@ -15,7 +15,7 @@ public:
 	Character(class Game* game, std::string name);
 	void UpdateActor(float deltaTime) override;
 	void ActorInput(const uint8_t* keyState) override;
-	BoundingBoxComponent* getHitBox() { return this->mHitBox; }
+	BoundingBoxComponent* GetHitBox() { return this->mHitBox; }
 	void Hit(float damage);
 private:
 	std::string name; // Para aparecer em cima da tela junto com o hp

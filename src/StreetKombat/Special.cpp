@@ -10,7 +10,8 @@
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
 #include "Game.h"
-#include "CircleComponent.h"
+#include "Colision.h"
+#include "Character.h"
 
 Special::Special(Game* game, class Character* caster)
 	:Actor(game)
@@ -40,12 +41,12 @@ void Special::UpdateActor(float deltaTime)
 	}
 	else
 	{
-		// Do we intersect with an asteroid?
+		// Do we intersect with the opponent?
 		Character* opponent = GetGame()->GetOpponent(this->mCaster);
-		if (Intersect(*mCircle, *(opponent->GetHitBox())))
+		if (Colision::Intersect(*mCircle, *(opponent->GetHitBox())))
 		{
 			SetState(EDead);
-			opponent->Hit(0.1f);
+			opponent->Hit(0.1f); // hit for 10% of the hp
 		}
 	}
 }

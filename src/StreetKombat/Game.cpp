@@ -160,7 +160,7 @@ void Game::GenerateOutput()
 void Game::LoadData()
 {
 	// Create player's ship
-	mPlayer1 = new Character(this);
+	mPlayer1 = new Character(this, "Player1");
 	mPlayer1->SetPosition(Vector2(512.0f, 384.0f));
 }
 
