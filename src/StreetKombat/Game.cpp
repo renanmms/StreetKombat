@@ -7,12 +7,18 @@
 // ----------------------------------------------------------------
 
 #include "Game.h"
+
 #include "SDL/SDL_image.h"
-#include <algorithm>
+
 #include "Actor.h"
-#include "SpriteComponent.h"
+#include "AnimSpriteComponent.h"
 #include "Character.h"
 #include "Random.h"
+#include "SpriteComponent.h"
+
+#include <algorithm>
+#include <sstream>
+#include <iomanip>
 
 Game::Game()
 :mWindow(nullptr)
@@ -162,6 +168,27 @@ void Game::LoadData()
 	// Create player's ship
 	mPlayer1 = new Character(this, "Player1");
 	mPlayer1->SetPosition(Vector2(512.0f, 384.0f));
+
+	// ------ BACKGROUND ------ \\
+	// Create actor for the background (this doesn't need a subclass)
+	Actor* temp = new Actor(this);
+	temp->SetPosition(Vector2(512.0f, 384.0f));
+
+	// Create the "far back" background
+	AnimSpriteComponent* bg = new AnimSpriteComponent(temp);
+	//create a vector
+	std::vector<SDL_Texture*> bgtexs = std::vector<SDL_Texture*>();
+	for (int i = 0; i < 15; i++) {
+		std::stringstream ss;
+		ss << std::setw(2) << std::setfill('0') << i;
+		std::string s = ss.str();
+		bgtexs.push_back(GetTexture("Assets/Background_ship_" + s + "_delay-0.15s.gif"));
+	}
+	//set this vector to the background component
+	bg->SetAnimTextures(bgtexs);
+	bg->SetAnimFPS(6.66f); // 1/0.15s
+
+	this->mBackground = temp;
 }
 
 void Game::UnloadData()

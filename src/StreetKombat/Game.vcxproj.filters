@@ -76,6 +76,9 @@
     <ClCompile Include="Colision.cpp">
       <Filter>src\Utils\source</Filter>
     </ClCompile>
+    <ClCompile Include="AnimSpriteComponent.cpp">
+      <Filter>src\Components\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -116,6 +119,9 @@
     </ClInclude>
     <ClInclude Include="Colision.h">
       <Filter>src\Utils\header</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimSpriteComponent.h">
+      <Filter>src\Components\header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
