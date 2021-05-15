@@ -56,6 +56,8 @@ private:
 	// Track if we're updating actors right now
 	bool mUpdatingActors;
 
+	class Actor* mBackground;
+
 	// Game-specific
 	class Character* mPlayer1; // Player 1 - aways playing
 	class Character* mPlayer2; // Player 2 - can be playing or not
