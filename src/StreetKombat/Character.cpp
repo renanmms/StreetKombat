@@ -10,7 +10,7 @@
 #include "SpriteComponent.h"
 #include "InputComponent.h"
 #include "Game.h"
-#include "Laser.h"
+//#include "Laser.h"
 
 Character::Character(Game* game, std::string name)
 	:Actor(game)
