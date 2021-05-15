@@ -9,7 +9,10 @@
 #include "Character.h"
 #include "SpriteComponent.h"
 #include "InputComponent.h"
+#include "Special.h"
 #include "Game.h"
+
+#include <iostream>
 
 Character::Character(Game* game, std::string name)
 	:Actor(game)
@@ -42,7 +45,6 @@ void Character::ActorInput(const uint8_t* keyState)
 	if (keyState[SDL_SCANCODE_K] && mHitCooldown <= 0.0f)
 	{
 		// TODO: Kick
-
 		// Reset cooldown (half second)
 		mHitCooldown = 0.5f;
 	}

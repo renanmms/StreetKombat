@@ -79,6 +79,9 @@
     <ClCompile Include="AnimSpriteComponent.cpp">
       <Filter>src\Components\source</Filter>
     </ClCompile>
+    <ClCompile Include="SpecialComponent.cpp">
+      <Filter>src\Components\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -121,6 +124,9 @@
       <Filter>src\Utils\header</Filter>
     </ClInclude>
     <ClInclude Include="AnimSpriteComponent.h">
+      <Filter>src\Components\header</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialComponent.h">
       <Filter>src\Components\header</Filter>
     </ClInclude>
   </ItemGroup>
