@@ -24,7 +24,7 @@ Special::Special(Game* game, class Character* caster)
 
 	// Create a move component, and set a forward speed
 	MoveComponent* mc = new MoveComponent(this);
-	mc->SetForwardSpeed(800.0f);
+	mc->SetSpeed(800.0f);
 
 	// Create a circle component (for collision)
 	mCircle = new CircleComponent(this);

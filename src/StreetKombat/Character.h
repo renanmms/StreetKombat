@@ -9,6 +9,7 @@
 #pragma once
 #include "Actor.h"
 #include "BoundingBoxComponent.h"
+#include <string>
 class Character : public Actor
 {
 public:

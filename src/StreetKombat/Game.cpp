@@ -214,7 +214,7 @@ SDL_Texture* Game::GetTexture(const std::string& fileName)
 	return tex;
 }
 
-Character* Game::GetOpponent(const Character* player)
+Character* Game::GetOpponent(class Character* player)
 {
 	return nullptr;
 }

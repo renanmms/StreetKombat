@@ -17,8 +17,8 @@ public:
 
 	void Update(float deltaTime) override;
 	
-	float GetForwardSpeed() const { return mSpeed; }
-	void SetForwardSpeed(float speed) { mSpeed = speed; }
+	float GetSpeed() const { return mSpeed; }
+	void SetSpeed(float speed) { mSpeed = speed; }
 private:
 	// Controls forward movement (units/second)
 	float mSpeed;
