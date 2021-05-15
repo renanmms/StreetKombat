@@ -16,7 +16,7 @@ Actor::Actor(Game* game)
 	, mPosition(Vector2::Zero)
 	, mScale(1.0f)
 	, mRotation(0.0f)
-	, mGravity(Vector2(0,-9.8))
+	, mGravity(Vector2(0,-9.8f))
 	, mGame(game)
 {
 	mGame->AddActor(this);

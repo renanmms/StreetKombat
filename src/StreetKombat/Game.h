@@ -8,6 +8,7 @@
 
 #pragma once
 #include "SDL/SDL.h"
+#include "Character.h"
 #include <unordered_map>
 #include <string>
 #include <vector>
@@ -28,7 +29,7 @@ public:
 	
 	SDL_Texture* GetTexture(const std::string& fileName);
 
-	Character* GetOpponent(const Character* player);
+	Character* GetOpponent(class Character* player);
 
 private:
 	void ProcessInput();

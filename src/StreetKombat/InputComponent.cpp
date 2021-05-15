@@ -15,6 +15,8 @@ InputComponent::InputComponent(class Actor* owner)
 ,mBackwardKey(0)
 ,mJumpKey(0)
 ,mDuckKey(0)
+,mMaxHorizontalSpeed(0)
+,mMaxVerticalSpeed(0)
 {
 	
 }
@@ -31,17 +33,17 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 	{
 		forwardSpeed -= mMaxHorizontalSpeed;
 	}
-	SetForwardSpeed(forwardSpeed);
+	SetSpeed(forwardSpeed);
 
 	// Calculate vertical speed for MoveComponent
-	float angularSpeed = 0.0f;
+	float verticalSpeed = 0.0f;
 	if (keyState[mJumpKey])
 	{
-		verticalSpeed += mMaxAngularSpeed;
+		;
 	}
-	if (keyState[mCounterClockwiseKey])
+	if (keyState[mDuckKey])
 	{
-		angularSpeed -= mMaxAngularSpeed;
+		;
 	}
-	SetAngularSpeed(angularSpeed);
+	//SetVerticalSpeed(verticalSpeed);
 }

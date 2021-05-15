@@ -73,6 +73,9 @@
     <ClCompile Include="BoundingBoxComponent.cpp">
       <Filter>src\Components\source</Filter>
     </ClCompile>
+    <ClCompile Include="Colision.cpp">
+      <Filter>src\Utils\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -110,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="BoundingBoxComponent.h">
       <Filter>src\Components\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Colision.h">
+      <Filter>src\Utils\header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

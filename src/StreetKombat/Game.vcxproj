@@ -14,6 +14,7 @@
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="BoundingBoxComponent.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
+    <ClCompile Include="Colision.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputComponent.cpp" />
@@ -29,6 +30,7 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="BoundingBoxComponent.h" />
     <ClInclude Include="CircleComponent.h" />
+    <ClInclude Include="Colision.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputComponent.h" />

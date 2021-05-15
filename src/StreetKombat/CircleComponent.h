@@ -23,6 +23,3 @@ public:
 private:
 	float mRadius;
 };
-
-bool Intersect(const CircleComponent& a, const CircleComponent& b);
-bool Intersect(const CircleComponent& a, const BoundingBoxComponent& b);
