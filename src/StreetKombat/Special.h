@@ -8,6 +8,7 @@
 
 #pragma once
 #include "Actor.h"
+#include <vector>
 class Special : public Actor
 {
 public:
