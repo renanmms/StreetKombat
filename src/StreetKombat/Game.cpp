@@ -15,6 +15,7 @@
 #include "Character.h"
 #include "Random.h"
 #include "SpriteComponent.h"
+#include "SpecialComponent.h"
 
 #include <algorithm>
 #include <sstream>
@@ -165,9 +166,17 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
-	// Create player's ship
+	// ------ Cria o personagem do jogador 1
 	mPlayer1 = new Character(this, "Player1");
 	mPlayer1->SetPosition(Vector2(512.0f, 384.0f));
+	// --- cria um golpe especial pro jogador 1
+	std::vector<int> sequencia_botoes = {
+		SDL_SCANCODE_L,
+		SDL_SCANCODE_K,
+		SDL_SCANCODE_L,
+		SDL_SCANCODE_J
+	};
+	SpecialComponent* sp1 = new SpecialComponent(mPlayer1, sequencia_botoes);
 
 	// ------ BACKGROUND ------ \\
 	// Create actor for the background (this doesn't need a subclass)
