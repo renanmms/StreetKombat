@@ -173,6 +173,22 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
+	// ------ CHAO E PAREDES ------ \\
+	// --- Chao
+	Actor* ground = new Actor(this);
+	ground->SetPosition(Vector2(512.0f, 760));
+	mGround = new BoundingBoxComponent(ground, 1024.0f, 16.0f);
+	// --- Vetor das paredes
+	mWalls = std::vector<BoundingBoxComponent*>();
+	// --- Parede esquerda
+	Actor* left_wall = new Actor(this);
+	left_wall->SetPosition(Vector2(5.0f, 384.0f));
+	mWalls.push_back(new BoundingBoxComponent(left_wall, 10.0f, 768.0f));
+	// --- Parede direita
+	Actor* right_wall = new Actor(this);
+	left_wall->SetPosition(Vector2(1019.0f, 384.0f));
+	mWalls.push_back(new BoundingBoxComponent(left_wall, 10.0f, 768.0f));
+
 	// ------ PLAYER 1 ------ \\
 	// --- Cria o personagem do jogador 1
 	mPlayer1 = new Character(this, "Player1");
@@ -292,6 +308,15 @@ Character* Game::GetOpponent(class Character* player)
 		return mPlayer2;
 	}
 	return mBot;
+}
+
+const BoundingBoxComponent Game::GetGround()
+{
+	return *mGround;
+}
+
+const std::vector<BoundingBoxComponent*> Game::GetWalls() {
+	return mWalls;
 }
 
 void Game::Shutdown()
