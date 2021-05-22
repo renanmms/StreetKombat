@@ -7,19 +7,17 @@
 // ----------------------------------------------------------------
 
 #pragma once
-#include "Component.h"
+#include "HitBoxComponent.h"
 #include "Math.h"
-#include "BoundingBoxComponent.h"
 
-class CircleComponent : public Component
+class CircleComponent : public HitBoxComponent
 {
 public:
-	CircleComponent(class Actor* owner);
-	
+	CircleComponent(class Actor* owner, float radius);
 	void SetRadius(float radius) { mRadius = radius; }
 	float GetRadius() const;
-	
-	const Vector2& GetCenter() const;
+	bool Colide(const CircleComponent& other);
+	bool Colide(const BoundingBoxComponent& other);
 private:
 	float mRadius;
 };

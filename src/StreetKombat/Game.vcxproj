@@ -16,9 +16,9 @@
     <ClCompile Include="BoundingBoxComponent.cpp" />
     <ClCompile Include="CharacterSpriteComponent.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
-    <ClCompile Include="Colision.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HitBoxComponent.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="Special.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -35,9 +35,9 @@
     <ClInclude Include="BoundingBoxComponent.h" />
     <ClInclude Include="CharacterSpriteComponent.h" />
     <ClInclude Include="CircleComponent.h" />
-    <ClInclude Include="Colision.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="HitBoxComponent.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="Special.h" />
     <ClInclude Include="Math.h" />

@@ -33,19 +33,16 @@ Character::Character(Game* game, std::string name)
 	//walking_sprite->SetAnimFPS(50.0f);
 
 	// Create an input component and set keys/speed
-	InputComponent* ic = new InputComponent(this);
-	ic->SetBackwardKey(SDL_SCANCODE_A);
-	ic->SetForwardKey(SDL_SCANCODE_D);
-	ic->SetJumpKey(SDL_SCANCODE_W);
-	ic->SetDuckKey(SDL_SCANCODE_S);
-	ic->SetMaxHorizontalSpeed(300.0f);
-	ic->SetMaxVerticalSpeed(300.0f);
 	this->SetScale(2.0f);
+
+	// --- Cria a hitbox
+	mHitBox = new BoundingBoxComponent(this, 100, 200);
 }
 
 void Character::UpdateActor(float deltaTime)
 {
 	mHitCooldown -= deltaTime;
+	std::cout << name << ": " << mHP << std::endl;
 }
 
 void Character::ActorInput(const uint8_t* keyState)
@@ -69,4 +66,7 @@ void Character::ActorInput(const uint8_t* keyState)
 
 void Character::Hit(float damage)
 {
+	mHP -= damage;
+	if (mHP <= 0)
+		SetState(EDead);
 }

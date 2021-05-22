@@ -19,11 +19,10 @@ public:
 	AnimSpriteComponent* walking_sprite;
 	void UpdateActor(float deltaTime) override;
 	void ActorInput(const uint8_t* keyState) override;
-	BoundingBoxComponent* GetHitBox() { return this->mHitBox; }
 	void Hit(float damage);
+	BoundingBoxComponent* mHitBox;
 private:
 	std::string name; // Para aparecer em cima da tela junto com o hp
-	BoundingBoxComponent* mHitBox;
 	float mHitCooldown; // Para não spamar o botão
 	float mHP; // Para calcular quando perde
 };

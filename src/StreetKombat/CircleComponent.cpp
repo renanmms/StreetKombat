@@ -7,21 +7,25 @@
 // ----------------------------------------------------------------
 
 #include "CircleComponent.h"
-#include "Actor.h"
 
-CircleComponent::CircleComponent(class Actor* owner)
-:Component(owner)
-,mRadius(0.0f)
+CircleComponent::CircleComponent(class Actor* owner, float radius)
+:HitBoxComponent(owner)
+,mRadius(radius)
 {
 	
 }
 
-const Vector2& CircleComponent::GetCenter() const
-{
-	return mOwner->GetPosition();
-}
-
 float CircleComponent::GetRadius() const
 {
-	return mOwner->GetScale() * mRadius;
+	return GetOwner().GetScale() * mRadius;
+}
+
+bool CircleComponent::Colide(const CircleComponent& other)
+{
+	return Intersect(*this, other);
+}
+
+bool CircleComponent::Colide(const BoundingBoxComponent& other)
+{
+	return Intersect(*this, other);
 }

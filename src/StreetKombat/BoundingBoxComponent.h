@@ -1,16 +1,26 @@
 #pragma once
+#include "HitBoxComponent.h"
 #include "Component.h"
+#include "Math.h"
+
 class BoundingBoxComponent :
-    public Component
+    public HitBoxComponent
 {
 public:
-  const Vector2& GetCenter() const { return center; }
-  const float GetWidth() const { return width; }
-  const float GetHeight() const { return height; }
+  BoundingBoxComponent(Actor* owner, float width, float height);
 
+  const float GetWidth() const 
+  {
+    return GetOwner().GetScale() * mWidth;
+  }
+  const float GetHeight() const 
+  { 
+    return GetOwner().GetScale() * mHeight;
+  }
+  bool Colide(const CircleComponent& other);
+  bool Colide(const BoundingBoxComponent& other);
 private:
-  Vector2 center;
-  float width;
-  float height;
+  float mWidth;
+  float mHeight;
 };
 
