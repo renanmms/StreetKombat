@@ -21,8 +21,16 @@ Character::Character(Game* game, std::string name)
 	,name(name)
 {
 	// Create a sprite component
-	SpriteComponent* sc = new SpriteComponent(this, 150);
-	sc->SetTexture(game->GetTexture("Assets/Ship.png"));
+	stopped_sprite = new SpriteComponent(this, 150);
+	stopped_sprite->SetTexture(game->GetTexture("Assets/Fighters/fighter_1.png"));
+
+	//AnimSpriteComponent* walking_sprite = new AnimSpriteComponent(this, 160);
+	//std::vector<SDL_Texture*> skilltexs = std::vector<SDL_Texture*>();
+	//for (int i = 0; i < 8; i++) {
+	//	skilltexs.push_back(game->GetTexture("Assets/DefinitelyNotHadouken/frame_" + std::to_string(i) + "_delay-0.02s.gif"));
+	//}
+	//walking_sprite->SetAnimTextures(skilltexs);
+	//walking_sprite->SetAnimFPS(50.0f);
 
 	// Create an input component and set keys/speed
 	InputComponent* ic = new InputComponent(this);
@@ -32,6 +40,7 @@ Character::Character(Game* game, std::string name)
 	ic->SetDuckKey(SDL_SCANCODE_S);
 	ic->SetMaxHorizontalSpeed(300.0f);
 	ic->SetMaxVerticalSpeed(300.0f);
+	this->SetScale(2.0f);
 }
 
 void Character::UpdateActor(float deltaTime)

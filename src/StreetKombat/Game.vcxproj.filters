@@ -82,6 +82,9 @@
     <ClCompile Include="SpecialComponent.cpp">
       <Filter>src\Components\source</Filter>
     </ClCompile>
+    <ClCompile Include="CharacterSpriteComponent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -129,5 +132,6 @@
     <ClInclude Include="SpecialComponent.h">
       <Filter>src\Components\header</Filter>
     </ClInclude>
+    <ClInclude Include="CharacterSpriteComponent.h" />
   </ItemGroup>
 </Project>
