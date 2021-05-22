@@ -15,5 +15,12 @@ bool Colision::Intersect(const CircleComponent& a, const CircleComponent& b)
 
 bool Colision::Intersect(const CircleComponent& a, const BoundingBoxComponent& b)
 {
-	return false;
+	float dify = a.GetCenter().y - b.GetCenter().y;
+	dify = dify < 0 ? dify * -1 : dify;
+	float difx = a.GetCenter().x - b.GetCenter().x;
+	difx = difx < 0 ? difx * -1 : difx;
+	bool colided = difx < a.GetRadius() + (b.GetWidth() / 2) && // Se esta dentro do bounding box em x
+								 dify < a.GetRadius() + (b.GetHeight() / 2);   // Se esta dentro do bounding box em y
+
+	return colided;
 }

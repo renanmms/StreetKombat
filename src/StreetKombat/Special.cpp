@@ -28,7 +28,7 @@ Special::Special(Game* game, class Character* caster)
 		skilltexs.push_back(game->GetTexture("Assets/DefinitelyNotHadouken/frame_" + std::to_string(i) + "_delay-0.02s.gif"));
 	}
 	sc->SetAnimTextures(skilltexs);
-	sc->SetAnimFPS(50.0f);
+	sc->SetAnimFPS(50.0f); // 1 / 0.02
 
 	// ------ Create the forward movement
 	MoveComponent* mc = new MoveComponent(this);
