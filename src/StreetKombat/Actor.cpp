@@ -60,9 +60,12 @@ void Actor::ProcessInput(const uint8_t* keyState)
 	if (mState == EActive)
 	{
 		// First process input for components
-		for (auto comp : mComponents)
+		//for (auto comp : mComponents)
+		int i = 0;
+		while(i < mComponents.size())
 		{
-			comp->ProcessInput(keyState);
+			mComponents[i]->ProcessInput(keyState);
+			i++;
 		}
 
 		ActorInput(keyState);

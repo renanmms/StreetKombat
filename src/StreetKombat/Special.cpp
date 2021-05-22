@@ -20,7 +20,7 @@ Special::Special(Game* game, class Character* caster)
 	:Actor(game)
 	,mDeathTimer(2.0f)
 	,mCaster(caster)
-	,mDamage(10.4f)
+	,mDamage(0.4f)
 {
 	// ------ Create the sprite
 	AnimSpriteComponent* sc = new AnimSpriteComponent(this, 160);

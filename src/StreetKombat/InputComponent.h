@@ -32,6 +32,9 @@ public:
 	void SetBackwardKey(int key) { mBackwardKey = key; }
 	void SetJumpKey(int key) { mJumpKey = key; }
 	void SetDuckKey(int key) { mDuckKey = key; }
+	
+	Actor* GetActor() { return mOwner; }
+
 private:
 	// The maximum speeds
 	float mMaxHorizontalSpeed;
@@ -42,4 +45,6 @@ private:
 	// Keys for vertical movement
 	int mJumpKey;
 	int mDuckKey;
+
+
 };

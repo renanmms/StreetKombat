@@ -26,6 +26,7 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include "CharacterSpriteComponent.h"
 
 
 Game::Game()
@@ -201,6 +202,22 @@ void Game::LoadData()
 	ic->SetDuckKey(SDL_SCANCODE_S);
 	ic->SetMaxHorizontalSpeed(300.0f);
 	ic->SetMaxVerticalSpeed(300.0f);
+
+	// --- Cria sprite do personagem
+	SDL_Texture* player1_stoppedtexs = GetTexture("Assets/Fighters/fighter_1.png");
+
+	// --- Criar textura animada
+	std::vector<SDL_Texture*> player1_movingtexs = std::vector<SDL_Texture*>();
+	for (int i = 0; i < 8; i++) {
+		player1_movingtexs.push_back(GetTexture("Assets/DefinitelyNotHadouken/frame_" + std::to_string(i) + "_delay-0.02s.gif"));
+	}
+
+	CharacterSpriteComponent* player1_sprite = new CharacterSpriteComponent(ic, 150);
+
+	player1_sprite->SetMovingTextures(player1_movingtexs);
+	player1_sprite->SetStoppedTexture(player1_stoppedtexs);
+	player1_sprite->SetMovingTextureFPS(50.0f);
+
 	// --- Cria um golpe especial para o jogador 1
 	std::vector<int> sequencia_p1 = {
 		SDL_SCANCODE_L,

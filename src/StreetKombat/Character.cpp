@@ -21,23 +21,6 @@ Character::Character(Game* game, std::string name)
 	,name(name)
 	
 {
-	// Create a sprite component
-	stopped_sprite = new SpriteComponent(this, 150);
-	SetDirection(Vector2(-1, 0));
-	
-	SDL_Texture* tex = game->GetTexture("Assets/Fighters/fighter_1.png");
-	stopped_sprite->SetTexture(tex);
-
-	//stopped_sprite->FlipSprite(Vector2(-1, 0));
-
-	//AnimSpriteComponent* walking_sprite = new AnimSpriteComponent(this, 160);
-	//std::vector<SDL_Texture*> skilltexs = std::vector<SDL_Texture*>();
-	//for (int i = 0; i < 8; i++) {
-	//	skilltexs.push_back(game->GetTexture("Assets/DefinitelyNotHadouken/frame_" + std::to_string(i) + "_delay-0.02s.gif"));
-	//}
-	//walking_sprite->SetAnimTextures(skilltexs);
-	//walking_sprite->SetAnimFPS(50.0f);
-
 	// Create an input component and set keys/speed
 	this->SetScale(2.0f);
 
