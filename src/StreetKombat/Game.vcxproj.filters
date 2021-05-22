@@ -73,9 +73,6 @@
     <ClCompile Include="BoundingBoxComponent.cpp">
       <Filter>src\Components\source</Filter>
     </ClCompile>
-    <ClCompile Include="Colision.cpp">
-      <Filter>src\Utils\source</Filter>
-    </ClCompile>
     <ClCompile Include="AnimSpriteComponent.cpp">
       <Filter>src\Components\source</Filter>
     </ClCompile>
@@ -83,7 +80,10 @@
       <Filter>src\Components\source</Filter>
     </ClCompile>
     <ClCompile Include="CharacterSpriteComponent.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Components\source</Filter>
+    </ClCompile>
+    <ClCompile Include="HitBoxComponent.cpp">
+      <Filter>src\Components\source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,15 +123,17 @@
     <ClInclude Include="BoundingBoxComponent.h">
       <Filter>src\Components\header</Filter>
     </ClInclude>
-    <ClInclude Include="Colision.h">
-      <Filter>src\Utils\header</Filter>
-    </ClInclude>
     <ClInclude Include="AnimSpriteComponent.h">
       <Filter>src\Components\header</Filter>
     </ClInclude>
     <ClInclude Include="SpecialComponent.h">
       <Filter>src\Components\header</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterSpriteComponent.h" />
+    <ClInclude Include="HitBoxComponent.h">
+      <Filter>src\Components\header</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSpriteComponent.h">
+      <Filter>src\Components\header</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -31,6 +31,8 @@ public:
 
 	Character* GetOpponent(class Character* player);
 	SDL_Renderer* GetRenderer();
+	const BoundingBoxComponent GetGround();
+	const std::vector<BoundingBoxComponent*> GetWalls();
 
 private:
 	void ProcessInput();
@@ -59,8 +61,12 @@ private:
 
 	class Actor* mBackground;
 
-	// Game-specific
+	// Game Characters
 	class Character* mPlayer1; // Player 1 - aways playing
 	class Character* mPlayer2; // Player 2 - can be playing or not
 	class Character* mBot;		 // Bot			 - A.I - can be playing or not
+	// Ch�o
+	BoundingBoxComponent* mGround;
+	// Paredes esquerda e direita
+	std::vector<BoundingBoxComponent*> mWalls;
 };

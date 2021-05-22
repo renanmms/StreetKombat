@@ -6,20 +6,27 @@
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
 
+// Header deste codigo
 #include "Game.h"
-
+// Dependencias do SDL
 #include "SDL/SDL_image.h"
-
+// Actors
 #include "Actor.h"
-#include "AnimSpriteComponent.h"
 #include "Character.h"
-#include "Random.h"
+// Components
+#include "AnimSpriteComponent.h"
+#include "BoundingBoxComponent.h"
+#include "InputComponent.h"
 #include "SpriteComponent.h"
 #include "SpecialComponent.h"
-
+// Utils
+#include "Random.h"
+// Bibliotecas
 #include <algorithm>
-#include <sstream>
 #include <iomanip>
+#include <iostream>
+#include <sstream>
+
 
 Game::Game()
 :mWindow(nullptr)
@@ -166,17 +173,55 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
-	// ------ Cria o personagem do jogador 1
+	// ------ CHAO E PAREDES ------ \\
+	// --- Chao
+	Actor* ground = new Actor(this);
+	ground->SetPosition(Vector2(512.0f, 760));
+	mGround = new BoundingBoxComponent(ground, 1024.0f, 16.0f);
+	// --- Vetor das paredes
+	mWalls = std::vector<BoundingBoxComponent*>();
+	// --- Parede esquerda
+	Actor* left_wall = new Actor(this);
+	left_wall->SetPosition(Vector2(5.0f, 384.0f));
+	mWalls.push_back(new BoundingBoxComponent(left_wall, 10.0f, 768.0f));
+	// --- Parede direita
+	Actor* right_wall = new Actor(this);
+	left_wall->SetPosition(Vector2(1019.0f, 384.0f));
+	mWalls.push_back(new BoundingBoxComponent(left_wall, 10.0f, 768.0f));
+
+	// ------ PLAYER 1 ------ \\
+	// --- Cria o personagem do jogador 1
 	mPlayer1 = new Character(this, "Player1");
 	mPlayer1->SetPosition(Vector2(512.0f, 384.0f));
-	// --- cria um golpe especial pro jogador 1
-	std::vector<int> sequencia_botoes = {
+	// --- Movimentação do player 1 (p1)
+	InputComponent* ic = new InputComponent(mPlayer1);
+	ic->SetBackwardKey(SDL_SCANCODE_A);
+	ic->SetForwardKey(SDL_SCANCODE_D);
+	ic->SetJumpKey(SDL_SCANCODE_W);
+	ic->SetDuckKey(SDL_SCANCODE_S);
+	ic->SetMaxHorizontalSpeed(300.0f);
+	ic->SetMaxVerticalSpeed(300.0f);
+	// --- Cria um golpe especial para o jogador 1
+	std::vector<int> sequencia_p1 = {
 		SDL_SCANCODE_L,
 		SDL_SCANCODE_K,
 		SDL_SCANCODE_L,
 		SDL_SCANCODE_J
 	};
-	SpecialComponent* sp1 = new SpecialComponent(mPlayer1, sequencia_botoes);
+	new SpecialComponent(mPlayer1, sequencia_p1);
+
+	// ------ BOT ------ \\
+	// -- Cria personagem do bot
+	mBot = new Character(this, "Bot");
+	mBot->SetPosition(Vector2(812.0f, 384.0f));
+	// --- cria um golpe especial para o bot
+	std::vector<int> sequencia_bot = {
+		SDL_SCANCODE_O,
+		SDL_SCANCODE_I,
+		SDL_SCANCODE_Y,
+		SDL_SCANCODE_U
+	};
+	new SpecialComponent(mBot, sequencia_bot);
 
 	// ------ BACKGROUND ------ \\
 	// Create actor for the background (this doesn't need a subclass)
@@ -191,7 +236,7 @@ void Game::LoadData()
 		std::stringstream ss;
 		ss << std::setw(2) << std::setfill('0') << i;
 		std::string s = ss.str();
-		bgtexs.push_back(GetTexture("Assets/Background_ship_" + s + "_delay-0.15s.gif"));
+		bgtexs.push_back(GetTexture("Assets/Backgrounds/Ship/Background_ship_" + s + "_delay-0.15s.gif"));
 	}
 	//set this vector to the background component
 	bg->SetAnimTextures(bgtexs);
@@ -252,7 +297,26 @@ SDL_Texture* Game::GetTexture(const std::string& fileName)
 
 Character* Game::GetOpponent(class Character* player)
 {
-	return nullptr;
+	// Player 2 e Bot não podem jogar um contra o outro, 
+	// entao se for um destes o adversario é o player 1
+	if (player == mPlayer2 || player == mBot)
+		return mPlayer1;
+	// Player 2 e Bot não podem jogar ao mesmo tempo,
+	// então se player for player 1, quem não for null é o adversario
+	if (mPlayer2 != nullptr)
+	{
+		return mPlayer2;
+	}
+	return mBot;
+}
+
+const BoundingBoxComponent Game::GetGround()
+{
+	return *mGround;
+}
+
+const std::vector<BoundingBoxComponent*> Game::GetWalls() {
+	return mWalls;
 }
 
 SDL_Renderer* Game::GetRenderer()

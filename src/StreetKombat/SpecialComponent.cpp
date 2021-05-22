@@ -46,7 +46,7 @@ void SpecialComponent::ProcessInput(const uint8_t* keyState)
 		}
 	}
 	// ------ Verifica se passou do tempo maximo
-	if (mLastKeyTime > 1.5f)
+	if (mLastKeyTime > 1.0f)
 	{
 		mCurrentState = 0;
 	}

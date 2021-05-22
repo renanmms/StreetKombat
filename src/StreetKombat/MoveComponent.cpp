@@ -8,6 +8,7 @@
 
 #include "MoveComponent.h"
 #include "Actor.h"
+#include "CircleComponent.h"
 
 MoveComponent::MoveComponent(class Actor* owner, int updateOrder)
 :Component(owner, updateOrder)
@@ -23,7 +24,10 @@ void MoveComponent::Update(float deltaTime)
 		Vector2 pos = mOwner->GetPosition();
 		pos += mOwner->GetDirection() * mSpeed * deltaTime;
 		
-		// (Screen wrapping code only for asteroids)
+		Actor tmp = Actor(*this->mOwner);
+		tmp.SetPosition(pos);
+		CircleComponent new_pos = CircleComponent(&tmp, 0);
+
 		if (pos.x < 0.0f) { pos.x = 0.0f; }
 		else if (pos.x > 1024.0f) { pos.x = 1024.0f; }
 
