@@ -44,8 +44,9 @@ public:
 	void SetScale(float scale) { mScale = scale; }
 	float GetRotation() const { return mRotation; }
 	void SetRotation(float rotation) { mRotation = rotation; }
-
-	Vector2 GetForward() const { return Vector2(Math::Cos(mRotation), -Math::Sin(mRotation)); }
+	Vector2 GetDirection() { return mDirection;  }
+	void SetDirection(Vector2 direction) { mDirection = direction; }
+//	Vector2 GetForward() const { return Vector2(Math::Cos(mRotation), -Math::Sin(mRotation)); }
 
 	State GetState() const { return mState; }
 	void SetState(State state) { mState = state; }
@@ -65,7 +66,7 @@ private:
 	Vector2 mGravity;
 	float mScale;
 	float mRotation;
-
+	Vector2 mDirection;
 	std::vector<class Component*> mComponents;
 	class Game* mGame;
 };

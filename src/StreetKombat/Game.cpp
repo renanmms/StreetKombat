@@ -255,6 +255,11 @@ Character* Game::GetOpponent(class Character* player)
 	return nullptr;
 }
 
+SDL_Renderer* Game::GetRenderer()
+{
+	return mRenderer;
+}
+
 void Game::Shutdown()
 {
 	UnloadData();

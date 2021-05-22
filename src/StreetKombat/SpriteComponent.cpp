@@ -18,6 +18,7 @@ SpriteComponent::SpriteComponent(Actor* owner, int drawOrder)
 	,mTexHeight(0)
 {
 	mOwner->GetGame()->AddSprite(this);
+	mRect = new SDL_Rect();
 }
 
 SpriteComponent::~SpriteComponent()
@@ -29,22 +30,24 @@ void SpriteComponent::Draw(SDL_Renderer* renderer)
 {
 	if (mTexture)
 	{
-		SDL_Rect r;
+		auto flip = mOwner->GetDirection().x > 0 ? SDL_FLIP_NONE : SDL_FLIP_HORIZONTAL;
 		// Scale the width/height by owner's scale
-		r.w = static_cast<int>(mTexWidth * mOwner->GetScale());
-		r.h = static_cast<int>(mTexHeight * mOwner->GetScale());
+		mRect->w = static_cast<int>(mTexWidth * mOwner->GetScale());
+		mRect->h = static_cast<int>(mTexHeight * mOwner->GetScale());
 		// Center the rectangle around the position of the owner
-		r.x = static_cast<int>(mOwner->GetPosition().x - r.w / 2);
-		r.y = static_cast<int>(mOwner->GetPosition().y - r.h / 2);
+		mRect->x = static_cast<int>(mOwner->GetPosition().x - mRect->w / 2);
+		mRect->y = static_cast<int>(mOwner->GetPosition().y - mRect->h / 2);
 
 		// Draw (have to convert angle from radians to degrees, and clockwise to counter)
 		SDL_RenderCopyEx(renderer,
 			mTexture,
 			nullptr,
-			&r,
+			mRect,
 			-Math::ToDegrees(mOwner->GetRotation()),
 			nullptr,
-			SDL_FLIP_NONE);
+			flip);
+
+		//SDL_RenderCopyEx(render, mTexture, NULL, mRect, 0, NULL, SDL_FLIP_HORIZONTAL);
 	}
 }
 

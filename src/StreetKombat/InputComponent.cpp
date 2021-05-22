@@ -27,12 +27,15 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 	float forwardSpeed = 0.0f;
 	if (keyState[mForwardKey])
 	{
+		mOwner->SetDirection(Vector2(1, 0));
 		forwardSpeed += mMaxHorizontalSpeed;
 	}
 	if (keyState[mBackwardKey])
 	{
-		forwardSpeed -= mMaxHorizontalSpeed;
+		mOwner->SetDirection(Vector2(-1, 0));
+		forwardSpeed += mMaxHorizontalSpeed;
 	}
+	
 	SetSpeed(forwardSpeed);
 
 	// Calculate vertical speed for MoveComponent

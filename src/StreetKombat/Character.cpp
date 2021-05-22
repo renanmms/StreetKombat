@@ -19,10 +19,16 @@ Character::Character(Game* game, std::string name)
 	,mHitCooldown(0.0f)
 	,mHP(1.0f)
 	,name(name)
+	
 {
 	// Create a sprite component
 	stopped_sprite = new SpriteComponent(this, 150);
-	stopped_sprite->SetTexture(game->GetTexture("Assets/Fighters/fighter_1.png"));
+	SetDirection(Vector2(-1, 0));
+	
+	SDL_Texture* tex = game->GetTexture("Assets/Fighters/fighter_1.png");
+	stopped_sprite->SetTexture(tex);
+
+	//stopped_sprite->FlipSprite(Vector2(-1, 0));
 
 	//AnimSpriteComponent* walking_sprite = new AnimSpriteComponent(this, 160);
 	//std::vector<SDL_Texture*> skilltexs = std::vector<SDL_Texture*>();

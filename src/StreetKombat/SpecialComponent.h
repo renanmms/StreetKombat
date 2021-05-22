@@ -15,6 +15,7 @@ private:
   float mLastKeyTime; // tempo desde que a ultima tecla foi pressionada
   float mRechargeTime; // tempo para recarregar a habilidade
   std::vector<int> mActivationSequence;
+  
 
 // ------ Method override
 public:

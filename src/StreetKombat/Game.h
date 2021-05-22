@@ -30,6 +30,7 @@ public:
 	SDL_Texture* GetTexture(const std::string& fileName);
 
 	Character* GetOpponent(class Character* player);
+	SDL_Renderer* GetRenderer();
 
 private:
 	void ProcessInput();

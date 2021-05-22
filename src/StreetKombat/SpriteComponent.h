@@ -9,6 +9,9 @@
 #pragma once
 #include "Component.h"
 #include "SDL/SDL.h"
+#include "Math.h"
+
+
 class SpriteComponent : public Component
 {
 public:
@@ -22,8 +25,12 @@ public:
 	int GetDrawOrder() const { return mDrawOrder; }
 	int GetTexHeight() const { return mTexHeight; }
 	int GetTexWidth() const { return mTexWidth; }
+	SDL_Rect* GetRect() { return mRect;  }
+
+	void FlipSprite(Vector2 direction);
 protected:
 	SDL_Texture* mTexture;
+	SDL_Rect* mRect;
 	int mDrawOrder;
 	int mTexWidth;
 	int mTexHeight;

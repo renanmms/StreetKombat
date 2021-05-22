@@ -41,6 +41,9 @@ Special::Special(Game* game, class Character* caster)
 	// ------ Adjust position and scale
 	SetPosition(caster->GetPosition() + Vector2(50, 0));
 	this->SetScale(0.3f);
+
+	// ------ Adjust special direction
+	SetDirection(caster->GetDirection());
 }
 
 void Special::UpdateActor(float deltaTime)

@@ -10,6 +10,7 @@
 #include "Actor.h"
 #include "BoundingBoxComponent.h"
 #include "AnimSpriteComponent.h"
+#include "Math.h"
 #include <string>
 class Character : public Actor
 {
