@@ -202,22 +202,19 @@ void Game::LoadData()
 	ic->SetDuckKey(SDL_SCANCODE_S);
 	ic->SetMaxHorizontalSpeed(300.0f);
 	ic->SetMaxVerticalSpeed(300.0f);
-
-	// --- Cria sprite do personagem
-	SDL_Texture* player1_stoppedtexs = GetTexture("Assets/Fighters/fighter_1.png");
-
-	// --- Criar textura animada
+	// --- Cria textura do personagem parado
+	SDL_Texture* player1_stoppedtexs = GetTexture("Assets/Fighters/fighter_stopped.png");
+	// --- Cria textura do personagem andando
 	std::vector<SDL_Texture*> player1_movingtexs = std::vector<SDL_Texture*>();
-	for (int i = 0; i < 8; i++) {
-		player1_movingtexs.push_back(GetTexture("Assets/DefinitelyNotHadouken/frame_" + std::to_string(i) + "_delay-0.02s.gif"));
+	for (int i = 1; i <= 12; i++) {
+		player1_movingtexs.push_back(GetTexture("Assets/Fighters/fighter_" + std::to_string(i) + ".png"));
 	}
-
+	// --- Cria a sprite
 	CharacterSpriteComponent* player1_sprite = new CharacterSpriteComponent(ic, 150);
-
 	player1_sprite->SetMovingTextures(player1_movingtexs);
 	player1_sprite->SetStoppedTexture(player1_stoppedtexs);
-	player1_sprite->SetMovingTextureFPS(50.0f);
-
+	player1_sprite->SetMovingTextureFPS(10.0f);
+	player1_sprite->ChangeTexture(player1_stoppedtexs);
 	// --- Cria um golpe especial para o jogador 1
 	std::vector<int> sequencia_p1 = {
 		SDL_SCANCODE_L,
@@ -408,5 +405,6 @@ void Game::RemoveSprite(SpriteComponent* sprite)
 {
 	// (We can't swap because it ruins ordering)
 	auto iter = std::find(mSprites.begin(), mSprites.end(), sprite);
-	mSprites.erase(iter);
+	if (iter != mSprites.end())
+		mSprites.erase(iter);
 }

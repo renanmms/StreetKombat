@@ -3,10 +3,9 @@
 #include "Actor.h"
 #include "Game.h"
 
-//
 CharacterSpriteComponent::CharacterSpriteComponent(InputComponent* input,  int drawOrder)
-	: SpriteComponent(input->GetActor(), drawOrder)
-	
+	: Component(input->GetActor(), drawOrder)
+	, current_state(STATE_STOPPED)
 {
 	mInput = input;
 
@@ -17,68 +16,69 @@ CharacterSpriteComponent::CharacterSpriteComponent(InputComponent* input,  int d
 
 void CharacterSpriteComponent::ProcessInput(const uint8_t* keyState)
 {
-	
+	CharacterSpriteComponent::state iteration_state = STATE_STOPPED;
 	if (keyState[mInput->GetForwardKey()] || keyState[mInput->GetBackKey()])
+		iteration_state = STATE_MOVING;
+
+	if (current_state != iteration_state)
 	{
-		ChangeTexture(mMovingTextures, movingTextureFPS);
+		switch (iteration_state)
+		{
+		case STATE_MOVING:
+			ChangeTexture(mMovingTextures, movingTextureFPS);
+			break;
+		case STATE_STOPPED:
+			ChangeTexture(mStoppedTexture);
+			break;
+		default:
+			break;
+		}
 	}
-	else 
-	{
-		ChangeTexture(mStoppedTexture);
-	}
+	current_state = iteration_state;
 }
 
 void CharacterSpriteComponent::SetMovingTextures(const std::vector<SDL_Texture*>& textures)
 {
 	mMovingTextures = textures;
-	if (mMovingTextures.size() > 0)
-	{
-		// Set the active texture to first frame
-		mCurrFrame = 0.0f;
-		SetTexture(mMovingTextures[0]);
-	}
 }
 
 void CharacterSpriteComponent::SetStoppedTexture(SDL_Texture* texture)
 {
 	mStoppedTexture = texture;
-
 }
 
 void CharacterSpriteComponent::ChangeTexture(std::vector<SDL_Texture*> animatedTexture, float FPS)
 {
 	if (animatedSprite != nullptr)
 	{
-		//mOwner->RemoveComponent(animatedSprite);
-		std::vector<SDL_Texture*> empty = { empty_texture };
-		animatedSprite->SetAnimTextures(empty);
+		mOwner->RemoveComponent(animatedSprite);
+		mOwner->GetGame()->RemoveSprite(animatedSprite);
 	}
 
 	if (staticSprite != nullptr)
 	{
-		//mOwner->RemoveComponent(staticSprite);
-		staticSprite->SetTexture(empty_texture);
+		mOwner->RemoveComponent(staticSprite);
+		mOwner->GetGame()->RemoveSprite(staticSprite);
 	}
+
 
 	animatedSprite = new AnimSpriteComponent(mOwner, 150);
 	animatedSprite->SetAnimTextures(animatedTexture);
 	animatedSprite->SetAnimFPS(FPS);
-	
 }
 
 void CharacterSpriteComponent::ChangeTexture(SDL_Texture* staticTexture)
 {
 	if(animatedSprite != nullptr)
 	{
-		std::vector<SDL_Texture*> empty = {empty_texture};
-		animatedSprite->SetAnimTextures(empty);
-		//mOwner->RemoveComponent(animatedSprite);
+		mOwner->RemoveComponent(animatedSprite);
+		mOwner->GetGame()->RemoveSprite(animatedSprite);
 	}
 
 	if (staticSprite != nullptr)
 	{
-		//mOwner->RemoveComponent(staticSprite);
-		staticSprite->SetTexture(empty_texture);
+		mOwner->RemoveComponent(staticSprite);
+		mOwner->GetGame()->RemoveSprite(staticSprite);
 	}
 
 	staticSprite = new SpriteComponent(mOwner, 150);

@@ -31,7 +31,6 @@ Character::Character(Game* game, std::string name)
 void Character::UpdateActor(float deltaTime)
 {
 	mHitCooldown -= deltaTime;
-	std::cout << name << ": " << mHP << std::endl;
 }
 
 void Character::ActorInput(const uint8_t* keyState)

@@ -4,7 +4,7 @@
 #include "SpriteComponent.h"
 #include "AnimSpriteComponent.h"
 class CharacterSpriteComponent :
-    public SpriteComponent
+    public Component
 {
 public:
 	CharacterSpriteComponent(class InputComponent* input, int drawOrder = 100);
@@ -13,13 +13,17 @@ public:
 	// Set the textures used for animation
 	void SetMovingTextures(const std::vector<SDL_Texture*>& textures);
 	void SetStoppedTexture(SDL_Texture* texture);
-	// Set/get the animation FPS
-	float GetAnimFPS() const { return mAnimFPS; }
-	void SetAnimFPS(float fps) { mAnimFPS = fps; }
 
 	void SetMovingTextureFPS(float fps) { movingTextureFPS = fps; }
+	
+	void ChangeTexture(std::vector<SDL_Texture*> animatedTexture, float FPS);
+	void ChangeTexture(SDL_Texture* staticTexture);
 
 private:
+	enum state {
+		STATE_MOVING,
+		STATE_STOPPED
+	};
 	// All textures in the animation
 	std::vector<SDL_Texture*> mMovingTextures;
 	SDL_Texture* mStoppedTexture;
@@ -31,15 +35,11 @@ private:
 	float movingTextureFPS;
 
 	InputComponent* mInput;
-	// Animation frame rate
-	float mAnimFPS;
 
 	AnimSpriteComponent* animatedSprite;
 	SpriteComponent* staticSprite;
 
-	//
+	state current_state;
 	
-	void ChangeTexture(std::vector<SDL_Texture*> animatedTexture, float FPS);
-	void ChangeTexture(SDL_Texture* staticTexture);
 };
 
