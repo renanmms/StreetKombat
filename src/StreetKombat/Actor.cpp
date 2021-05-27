@@ -22,6 +22,8 @@ Actor::Actor(Game* game)
 	, mDirection(Vector2(1, 0))
 {
 	mGame->AddActor(this);
+
+	mCurrentForces = std::vector<Vector2>();
 }
 
 Actor::~Actor()

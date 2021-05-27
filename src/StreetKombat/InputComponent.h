@@ -29,6 +29,7 @@ public:
 	void SetBackwardKey(int key) { mBackwardKey = key; }
 	void SetJumpKey(int key) { mJumpKey = key; }
 	void SetDuckKey(int key) { mDuckKey = key; }
+	bool IsJumping() { return isJumping; }
 	
 	Actor* GetActor() { return mOwner; }
 
@@ -42,6 +43,6 @@ private:
 	// Keys for vertical movement
 	int mJumpKey;
 	int mDuckKey;
-
-
+	// Controle de pulo
+	bool isJumping;
 };

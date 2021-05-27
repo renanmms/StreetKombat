@@ -13,6 +13,7 @@ public:
 	// Set the textures used for animation
 	void SetMovingTextures(const std::vector<SDL_Texture*>& textures);
 	void SetStoppedTexture(SDL_Texture* texture);
+	void SetJumpingTexture(SDL_Texture* texture);
 
 	void SetMovingTextureFPS(float fps) { movingTextureFPS = fps; }
 	
@@ -22,15 +23,15 @@ public:
 private:
 	enum state {
 		STATE_MOVING,
-		STATE_STOPPED
+		STATE_STOPPED,
+		STATE_JUMPING
 	};
 	// All textures in the animation
 	std::vector<SDL_Texture*> mMovingTextures;
 	SDL_Texture* mStoppedTexture;
+	SDL_Texture* mJumpingTexture;
 	// Current frame displayed
 	float mCurrFrame;
-
-	SDL_Texture* empty_texture;
 
 	float movingTextureFPS;
 

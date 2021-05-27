@@ -204,6 +204,8 @@ void Game::LoadData()
 	PhysicsComponent* pc_p1 = new PhysicsComponent(mPlayer1);
 	// --- Cria textura do personagem parado
 	SDL_Texture* player1_stoppedtexs = GetTexture("Assets/Fighters/fighter_stopped.png");
+	// --- Cria textura do personagem pulando
+	SDL_Texture* player1_jumpingtexs = GetTexture("Assets/Fighters/fighter_jumping.png");
 	// --- Cria textura do personagem andando
 	std::vector<SDL_Texture*> player1_movingtexs = std::vector<SDL_Texture*>();
 	for (int i = 1; i <= 12; i++) {
@@ -211,6 +213,7 @@ void Game::LoadData()
 	}
 	// --- Cria a sprite
 	CharacterSpriteComponent* player1_sprite = new CharacterSpriteComponent(ic, 150);
+	player1_sprite->SetJumpingTexture(player1_jumpingtexs);
 	player1_sprite->SetMovingTextures(player1_movingtexs);
 	player1_sprite->SetStoppedTexture(player1_stoppedtexs);
 	player1_sprite->SetMovingTextureFPS(10.0f);

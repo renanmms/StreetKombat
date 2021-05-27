@@ -27,7 +27,7 @@ Character::Character(Game* game, std::string name)
 	mHitBox = new BoundingBoxComponent(this, 100, 200);
 
 	// --- Ajusta a massa do personagem
-	setMass(120.0f);
+	setMass(1.0f);
 }
 
 void Character::UpdateActor(float deltaTime)

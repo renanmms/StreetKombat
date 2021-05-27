@@ -17,6 +17,7 @@ InputComponent::InputComponent(class Actor* owner)
 ,mDuckKey(0)
 ,mSpeed(Vector2(0,0))
 ,mWalkSpeed(Vector2(300,0))
+,isJumping(false)
 {
 	
 }
@@ -37,6 +38,9 @@ void InputComponent::Update(float deltaTime)
 
 void InputComponent::ProcessInput(const uint8_t* keyState)
 {
+	if (mOwner->GetPosition().y == 650.0f)
+		isJumping = false;
+
 	// Calculate horizontal speed for MoveComponent
 	Vector2 currentSpeed = Vector2(0,0);
 	if (keyState[mForwardKey])
@@ -54,14 +58,11 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 
 	// Calculate vertical speed for MoveComponent
 	float verticalSpeed = 0.0f;
-	if (keyState[mJumpKey])
+	if (keyState[mJumpKey] && // Se apertou a tecla pra pular
+			!isJumping) // Não é a tecla pra pular que continua apertada
 	{
-		;
+		mOwner->applyForce(Vector2(0, -250.0f));
+		isJumping = true;
 	}
-	if (keyState[mDuckKey])
-	{
-		;
-	}
-	//SetVerticalSpeed(verticalSpeed);
 }
 

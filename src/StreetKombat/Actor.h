@@ -51,7 +51,7 @@ public:
 	void setMass(float newMass) { mMass = newMass; }
 	float getMass() { return mMass; }
 	void applyForce(Vector2 force) { mCurrentForces.push_back(force); }
-	std::vector<Vector2> getCurrentForces() { return mCurrentForces; }
+	std::vector<Vector2>* getCurrentForces() { return &mCurrentForces; }
 //	Vector2 GetForward() const { return Vector2(Math::Cos(mRotation), -Math::Sin(mRotation)); }
 
 	State GetState() const { return mState; }
