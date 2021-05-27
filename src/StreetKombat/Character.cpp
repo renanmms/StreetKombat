@@ -19,13 +19,15 @@ Character::Character(Game* game, std::string name)
 	,mHitCooldown(0.0f)
 	,mHP(1.0f)
 	,name(name)
-	
 {
 	// Create an input component and set keys/speed
 	this->SetScale(2.0f);
 
 	// --- Cria a hitbox
 	mHitBox = new BoundingBoxComponent(this, 100, 200);
+
+	// --- Ajusta a massa do personagem
+	setMass(120.0f);
 }
 
 void Character::UpdateActor(float deltaTime)

@@ -200,8 +200,8 @@ void Game::LoadData()
 	ic->SetForwardKey(SDL_SCANCODE_D);
 	ic->SetJumpKey(SDL_SCANCODE_W);
 	ic->SetDuckKey(SDL_SCANCODE_S);
-	ic->SetMaxHorizontalSpeed(300.0f);
-	ic->SetMaxVerticalSpeed(300.0f);
+	// --- Aplica gravidade a p1
+	PhysicsComponent* pc_p1 = new PhysicsComponent(mPlayer1);
 	// --- Cria textura do personagem parado
 	SDL_Texture* player1_stoppedtexs = GetTexture("Assets/Fighters/fighter_stopped.png");
 	// --- Cria textura do personagem andando

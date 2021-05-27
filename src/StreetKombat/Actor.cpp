@@ -14,9 +14,10 @@
 Actor::Actor(Game* game)
 	:mState(EActive)
 	, mPosition(Vector2::Zero)
+	, mMass(1.0f)
 	, mScale(1.0f)
 	, mRotation(0.0f)
-	, mGravity(Vector2(0,-9.8f))
+	, mGravity(Vector2(0,9.8f))
 	, mGame(game)
 	, mDirection(Vector2(1, 0))
 {

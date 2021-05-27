@@ -8,7 +8,7 @@
 
 #include "Special.h"
 #include "AnimSpriteComponent.h"
-#include "MoveComponent.h"
+#include "PhysicsComponent.h"
 #include "Game.h"
 #include "Character.h"
 #include "CircleComponent.h"
@@ -22,6 +22,11 @@ Special::Special(Game* game, class Character* caster)
 	,mCaster(caster)
 	,mDamage(0.4f)
 {
+	// ------ Remove a gravidade
+	setGravity(Vector2(0, 0));
+	// ------ Aplica uma força para mover o golpe
+	applyForce(Vector2(50, 0));
+
 	// ------ Create the sprite
 	AnimSpriteComponent* sc = new AnimSpriteComponent(this, 160);
 	std::vector<SDL_Texture*> skilltexs = std::vector<SDL_Texture*>();
@@ -32,8 +37,8 @@ Special::Special(Game* game, class Character* caster)
 	sc->SetAnimFPS(50.0f); // 1 / 0.02
 
 	// ------ Create the forward movement
-	MoveComponent* mc = new MoveComponent(this);
-	mc->SetSpeed(400.0f);
+	PhysicsComponent* mc = new PhysicsComponent(this);
+	//mc->SetSpeed(400.0f);
 
 	// ------ Create the colision
 	mHitBox = new CircleComponent(this,11);

@@ -7,27 +7,24 @@
 // ----------------------------------------------------------------
 
 #pragma once
-#include "MoveComponent.h"
+#include "PhysicsComponent.h"
 #include <cstdint>
 
-class InputComponent : public MoveComponent
+class InputComponent : public PhysicsComponent
 {
 public:
 	// Lower update order to update first
 	InputComponent(class Actor* owner);
 
 	void ProcessInput(const uint8_t* keyState) override;
-	
+	void Update(float deltaTime) override;
+
 	// Getters/setters for private variables
-	float GetMaxHorizontal() const { return mMaxHorizontalSpeed; }
-	float GetMaxVertical() const { return mMaxVerticalSpeed; }
 	int GetForwardKey() const { return mForwardKey; }
 	int GetBackKey() const { return mBackwardKey; }
 	int GetJumpKey() const { return mJumpKey; }
 	int GetDuckKey() const { return mDuckKey; }
 
-	void SetMaxHorizontalSpeed(float speed) { mMaxHorizontalSpeed = speed; }
-	void SetMaxVerticalSpeed(float speed) { mMaxVerticalSpeed = speed; }
 	void SetForwardKey(int key) { mForwardKey = key; }
 	void SetBackwardKey(int key) { mBackwardKey = key; }
 	void SetJumpKey(int key) { mJumpKey = key; }
@@ -36,9 +33,9 @@ public:
 	Actor* GetActor() { return mOwner; }
 
 private:
-	// The maximum speeds
-	float mMaxHorizontalSpeed;
-	float mMaxVerticalSpeed;
+	// Speeds
+	Vector2 mWalkSpeed;
+	Vector2 mSpeed;
 	// Keys for horizontal movement
 	int mForwardKey;
 	int mBackwardKey;

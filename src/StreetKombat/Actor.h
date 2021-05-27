@@ -46,6 +46,12 @@ public:
 	void SetRotation(float rotation) { mRotation = rotation; }
 	Vector2 GetDirection() { return mDirection;  }
 	void SetDirection(Vector2 direction) { mDirection = direction; }
+	void setGravity(Vector2 newGravity) { mGravity = newGravity; }
+	Vector2 getGravity() { return mGravity; }
+	void setMass(float newMass) { mMass = newMass; }
+	float getMass() { return mMass; }
+	void applyForce(Vector2 force) { mCurrentForces.push_back(force); }
+	std::vector<Vector2> getCurrentForces() { return mCurrentForces; }
 //	Vector2 GetForward() const { return Vector2(Math::Cos(mRotation), -Math::Sin(mRotation)); }
 
 	State GetState() const { return mState; }
@@ -64,9 +70,11 @@ private:
 	// Transform
 	Vector2 mPosition;
 	Vector2 mGravity;
+	float mMass;
 	float mScale;
 	float mRotation;
 	Vector2 mDirection;
+	std::vector<Vector2> mCurrentForces;
 	std::vector<class Component*> mComponents;
 	class Game* mGame;
 };

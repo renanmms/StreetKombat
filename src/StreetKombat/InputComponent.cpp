@@ -10,33 +10,47 @@
 #include "Actor.h"
 
 InputComponent::InputComponent(class Actor* owner)
-:MoveComponent(owner)
+:PhysicsComponent(owner)
 ,mForwardKey(0)
 ,mBackwardKey(0)
 ,mJumpKey(0)
 ,mDuckKey(0)
-,mMaxHorizontalSpeed(0)
-,mMaxVerticalSpeed(0)
+,mSpeed(Vector2(0,0))
+,mWalkSpeed(Vector2(300,0))
 {
 	
+}
+
+void InputComponent::Update(float deltaTime)
+{
+	Vector2 pos = mOwner->GetPosition();
+	pos += mSpeed * deltaTime;
+	
+	// --- Aplica os limites da tela
+	if (pos.x < 0.0f) { pos.x = 0.0f; }
+	else if (pos.x > 1024.0f) { pos.x = 1024.0f; }
+	if (pos.y < 0.0f) { pos.y = 0.0f; }
+	else if (pos.y > 650.0f) { pos.y = 650.0f; }
+
+	mOwner->SetPosition(pos);
 }
 
 void InputComponent::ProcessInput(const uint8_t* keyState)
 {
 	// Calculate horizontal speed for MoveComponent
-	float forwardSpeed = 0.0f;
+	Vector2 currentSpeed = Vector2(0,0);
 	if (keyState[mForwardKey])
 	{
 		mOwner->SetDirection(Vector2(1, 0));
-		forwardSpeed += mMaxHorizontalSpeed;
+		currentSpeed = mWalkSpeed;
 	}
 	if (keyState[mBackwardKey])
 	{
 		mOwner->SetDirection(Vector2(-1, 0));
-		forwardSpeed += mMaxHorizontalSpeed;
+		currentSpeed = mWalkSpeed;
 	}
 	
-	SetSpeed(forwardSpeed);
+	mSpeed = mOwner->GetDirection()*currentSpeed;
 
 	// Calculate vertical speed for MoveComponent
 	float verticalSpeed = 0.0f;
@@ -50,3 +64,4 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 	}
 	//SetVerticalSpeed(verticalSpeed);
 }
+
