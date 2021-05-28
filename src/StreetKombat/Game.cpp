@@ -204,7 +204,7 @@ void Game::LoadData()
 	// --- Aplica gravidade a p1
 	PhysicsComponent* pc_p1 = new PhysicsComponent(mPlayer1);
 	// --- Cria textura do personagem parado
-	SDL_Texture* player1_idleingtexs = GetTexture("Assets/Fighters/Haggar/haggar_idle.png");
+	SDL_Texture* player1_idlingtexs = GetTexture("Assets/Fighters/Haggar/haggar_idle.png");
 	// --- Cria textura do personagem pulando
 	std::vector<SDL_Texture*> player1_jumpingtexs = std::vector<SDL_Texture*>();
 	for (int i = 1; i <= 3; i++) {
@@ -225,9 +225,9 @@ void Game::LoadData()
 	CharacterSpriteComponent* player1_sprite = new CharacterSpriteComponent(ic, 150);
 	player1_sprite->SetJumpingTextures(player1_jumpingtexs);
 	player1_sprite->SetMovingTextures(player1_movingtexs);
-	player1_sprite->SetIdlingTexture(player1_idleingtexs);
+	player1_sprite->SetIdlingTexture(player1_idlingtexs);
 	player1_sprite->SetMovingTextureFPS(10.0f);
-	player1_sprite->ChangeTexture(player1_idleingtexs);
+	player1_sprite->ChangeTexture(player1_idlingtexs);
 	// --- Cria um golpe especial para o jogador 1
 	std::vector<int> sequencia_p1 = {
 		SDL_SCANCODE_L,
@@ -244,7 +244,7 @@ void Game::LoadData()
 	// --- Aplica gravidade a p1
 	PhysicsComponent* pc_bot = new PhysicsComponent(mBot);
 	// --- Cria textura do personagem parado
-	SDL_Texture* bot_idleingtexs = GetTexture("Assets/Fighters/Cody/cody_idle.png");
+	SDL_Texture* bot_idlingtexs = GetTexture("Assets/Fighters/Cody/cody_idle.png");
 	// --- Cria textura do personagem pulando
 	std::vector<SDL_Texture*> bot_jumpingtexs = std::vector<SDL_Texture*>();
 	for (int i = 1; i <= 2; i++) {
@@ -266,9 +266,9 @@ void Game::LoadData()
 	CharacterSpriteComponent* bot_sprite = new CharacterSpriteComponent(bot_ic, 150);
 	bot_sprite->SetJumpingTextures(bot_jumpingtexs);
 	bot_sprite->SetMovingTextures(bot_movingtexs);
-	bot_sprite->SetIdlingTexture(bot_idleingtexs);
+	bot_sprite->SetIdlingTexture(bot_idlingtexs);
 	bot_sprite->SetMovingTextureFPS(10.0f);
-	bot_sprite->ChangeTexture(bot_idleingtexs);
+	bot_sprite->ChangeTexture(bot_idlingtexs);
 	// --- cria um golpe especial para o bot
 	std::vector<int> sequencia_bot = {
 		SDL_SCANCODE_O,
