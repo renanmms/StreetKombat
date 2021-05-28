@@ -24,7 +24,7 @@ Character::Character(Game* game, std::string name)
 	this->SetScale(2.0f);
 
 	// --- Cria a hitbox
-	mHitBox = new BoundingBoxComponent(this, 100, 200);
+	mHitBox = new BoundingBoxComponent(this, 60, 100);
 
 	// --- Ajusta a massa do personagem
 	setMass(1.0f);

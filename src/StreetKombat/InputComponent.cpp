@@ -38,8 +38,7 @@ void InputComponent::Update(float deltaTime)
 
 void InputComponent::ProcessInput(const uint8_t* keyState)
 {
-	if (mOwner->GetPosition().y == 650.0f)
-		isJumping = false;
+	isJumping = !(mOwner->GetPosition().y == 650.0f);
 
 	// Calculate horizontal speed for MoveComponent
 	Vector2 currentSpeed = Vector2(0,0);
@@ -62,7 +61,6 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 			!isJumping) // Não é a tecla pra pular que continua apertada
 	{
 		mOwner->applyForce(Vector2(0, -250.0f));
-		isJumping = true;
 	}
 }
 

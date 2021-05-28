@@ -15,6 +15,11 @@ public:
 private:
 	void UpdateActor(float deltaTime) override;
 
+	void DrawBack(Character* player, float deltaTime);
+	void RushIn(Character* player, float deltaTime);
+	void Attack(Character* player, float deltaTime);
+	void Jump();
+
 	AI_State mCurrentState;
 };
 

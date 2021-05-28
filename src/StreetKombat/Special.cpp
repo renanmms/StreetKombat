@@ -18,9 +18,9 @@
 
 Special::Special(Game* game, class Character* caster)
 	:Actor(game)
-	,mDeathTimer(2.0f)
+	,mDeathTimer(1.0f)
 	,mCaster(caster)
-	,mDamage(0.4f)
+	,mDamage(0.1f)
 {
 	// ------ Remove a gravidade
 	setGravity(Vector2(0, 0));
@@ -40,11 +40,11 @@ Special::Special(Game* game, class Character* caster)
 	PhysicsComponent* mc = new PhysicsComponent(this);
 
 	// ------ Create the colision
-	mHitBox = new CircleComponent(this,11);
+	mHitBox = new CircleComponent(this,3);
 
 	// ------ Adjust position and scale
 	SetPosition(caster->GetPosition() + Vector2(50, 0));
-	this->SetScale(0.45f);
+	this->SetScale(0.35f);
 
 	// ------ Adjust special direction
 	SetDirection(caster->GetDirection());
