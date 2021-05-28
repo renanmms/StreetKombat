@@ -225,7 +225,7 @@ void Game::LoadData()
 	CharacterSpriteComponent* player1_sprite = new CharacterSpriteComponent(ic, 150);
 	player1_sprite->SetJumpingTextures(player1_jumpingtexs);
 	player1_sprite->SetMovingTextures(player1_movingtexs);
-	player1_sprite->SetIdleingTexture(player1_idleingtexs);
+	player1_sprite->SetIdlingTexture(player1_idleingtexs);
 	player1_sprite->SetMovingTextureFPS(10.0f);
 	player1_sprite->ChangeTexture(player1_idleingtexs);
 	// --- Cria um golpe especial para o jogador 1
@@ -266,7 +266,7 @@ void Game::LoadData()
 	CharacterSpriteComponent* bot_sprite = new CharacterSpriteComponent(bot_ic, 150);
 	bot_sprite->SetJumpingTextures(bot_jumpingtexs);
 	bot_sprite->SetMovingTextures(bot_movingtexs);
-	bot_sprite->SetIdleingTexture(bot_idleingtexs);
+	bot_sprite->SetIdlingTexture(bot_idleingtexs);
 	bot_sprite->SetMovingTextureFPS(10.0f);
 	bot_sprite->ChangeTexture(bot_idleingtexs);
 	// --- cria um golpe especial para o bot

@@ -5,7 +5,7 @@
 
 CharacterSpriteComponent::CharacterSpriteComponent(InputComponent* input,  int drawOrder)
 	: Component(input->GetActor(), drawOrder)
-	, current_state(STATE_STOPPED)
+	, current_state(STATE_IDLING)
 {
 	mInput = input;
 }
@@ -14,7 +14,7 @@ CharacterSpriteComponent::CharacterSpriteComponent(InputComponent* input,  int d
 
 void CharacterSpriteComponent::ProcessInput(const uint8_t* keyState)
 {
-	CharacterSpriteComponent::state iteration_state = STATE_STOPPED;
+	CharacterSpriteComponent::state iteration_state = STATE_IDLING;
 	if (mInput->IsJumping())
 		iteration_state = STATE_JUMPING;
 	else if (keyState[mInput->GetForwardKey()] || keyState[mInput->GetBackKey()])
@@ -25,13 +25,13 @@ void CharacterSpriteComponent::ProcessInput(const uint8_t* keyState)
 		switch (iteration_state)
 		{
 		case STATE_JUMPING:
-			ChangeTexture(mJumpingTexture);
+			ChangeTexture(mJumpingTextures,2.5);
 			break;
 		case STATE_MOVING:
 			ChangeTexture(mMovingTextures, movingTextureFPS);
 			break;
-		case STATE_STOPPED:
-			ChangeTexture(mStoppedTexture);
+		case STATE_IDLING:
+			ChangeTexture(mIdlingTexture);
 			break;
 		default:
 			break;
@@ -45,14 +45,19 @@ void CharacterSpriteComponent::SetMovingTextures(const std::vector<SDL_Texture*>
 	mMovingTextures = textures;
 }
 
-void CharacterSpriteComponent::SetStoppedTexture(SDL_Texture* texture)
+void CharacterSpriteComponent::SetIdlingTexture(SDL_Texture* texture)
 {
-	mStoppedTexture = texture;
+	mIdlingTexture = texture;
 }
 
-void CharacterSpriteComponent::SetJumpingTexture(SDL_Texture* texture)
+/*void CharacterSpriteComponent::SetJumpingTexture(SDL_Texture* texture)
 {
 	mJumpingTexture = texture;
+}*/
+
+void CharacterSpriteComponent::SetJumpingTextures(const std::vector<SDL_Texture*>& textures)
+{
+	mJumpingTextures = textures;
 }
 
 void CharacterSpriteComponent::ChangeTexture(std::vector<SDL_Texture*> animatedTexture, float FPS)
