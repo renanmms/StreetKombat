@@ -21,14 +21,14 @@ PhysicsComponent::PhysicsComponent(class Actor* owner, int updateOrder)
 
 void PhysicsComponent::Update(float deltaTime)
 {
-		
+	
 	float multiplier = 5;
 
 	std::vector<Vector2>* forces = mOwner->getCurrentForces();
 	Vector2 pos = mOwner->GetPosition();
 	Vector2 grav = mOwner->getGravity();
 	float mass = mOwner->getMass();
-		
+	
 	std::cout << "Mass: " << mass << std::endl;
 	std::cout << "Pos: (" << pos.x << ", " << pos.y << ")" << std::endl;
 	std::cout << "Grav: (" << grav.x << ", " << grav.y << ")" << std::endl;

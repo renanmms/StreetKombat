@@ -85,6 +85,9 @@
     <ClCompile Include="PhysicsComponent.cpp">
       <Filter>src\Components\source</Filter>
     </ClCompile>
+    <ClCompile Include="Bot.cpp">
+      <Filter>src\Actors\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -134,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="PhysicsComponent.h">
       <Filter>src\Components\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Bot.h">
+      <Filter>src\Actors\header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

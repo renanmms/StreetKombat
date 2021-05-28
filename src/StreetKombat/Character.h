@@ -20,7 +20,7 @@ public:
 	void ActorInput(const uint8_t* keyState) override;
 	void Hit(float damage);
 	BoundingBoxComponent* mHitBox;
-private:
+protected:
 	std::string name; // Para aparecer em cima da tela junto com o hp
 	float mHitCooldown; // Para não spamar o botão
 	float mHP; // Para calcular quando perde

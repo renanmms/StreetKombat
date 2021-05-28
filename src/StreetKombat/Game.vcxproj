@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AnimSpriteComponent.cpp" />
+    <ClCompile Include="Bot.cpp" />
     <ClCompile Include="BoundingBoxComponent.cpp" />
     <ClCompile Include="CharacterSpriteComponent.cpp" />
     <ClCompile Include="CircleComponent.cpp" />
@@ -32,6 +33,7 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AnimSpriteComponent.h" />
+    <ClInclude Include="Bot.h" />
     <ClInclude Include="BoundingBoxComponent.h" />
     <ClInclude Include="CharacterSpriteComponent.h" />
     <ClInclude Include="CircleComponent.h" />

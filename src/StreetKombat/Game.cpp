@@ -13,6 +13,7 @@
 // Actors
 #include "Actor.h"
 #include "Character.h"
+#include "Bot.h"
 // Components
 #include "AnimSpriteComponent.h"
 #include "BoundingBoxComponent.h"
@@ -229,7 +230,7 @@ void Game::LoadData()
 
 	// ------ BOT ------ \\
 	// --- Cria personagem do bot
-	mBot = new Character(this, "Bot");
+	mBot = new Bot(this);
 	mBot->SetPosition(Vector2(812.0f, 384.0f));
 	// --- Aplica gravidade a p1
 	PhysicsComponent* pc_bot = new PhysicsComponent(mBot);

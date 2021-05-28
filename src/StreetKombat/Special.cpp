@@ -38,7 +38,6 @@ Special::Special(Game* game, class Character* caster)
 
 	// ------ Create the forward movement
 	PhysicsComponent* mc = new PhysicsComponent(this);
-	//mc->SetSpeed(400.0f);
 
 	// ------ Create the colision
 	mHitBox = new CircleComponent(this,11);
