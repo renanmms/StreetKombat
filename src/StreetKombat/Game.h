@@ -66,6 +66,10 @@ private:
 	class Character* mPlayer1; // Player 1 - aways playing
 	class Character* mPlayer2; // Player 2 - can be playing or not
 	class Character* mBot;		 // Bot			 - A.I - can be playing or not
+
+	std::string Player1CharacterName;
+	std::string Player2CharacterName;
+
 	// Ch�o
 	BoundingBoxComponent* mGround;
 	// Paredes esquerda e direita
