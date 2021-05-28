@@ -25,7 +25,7 @@ Special::Special(Game* game, class Character* caster)
 	// ------ Remove a gravidade
 	setGravity(Vector2(0, 0));
 	// ------ Aplica uma força para mover o golpe
-	applyForce(Vector2(50, 0));
+	applyForce(Vector2(100, 0) * caster->GetDirection());
 
 	// ------ Create the sprite
 	AnimSpriteComponent* sc = new AnimSpriteComponent(this, 160);

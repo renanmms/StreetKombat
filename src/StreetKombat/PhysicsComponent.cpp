@@ -44,7 +44,7 @@ void PhysicsComponent::Update(float deltaTime)
 
 	// --- Calcula a aceleracao total
 	Vector2 a = Vector2(F.x/mass, F.y/mass);
-	if (pos.y < 650)
+	if (mSpeed.y < 250) // limita a velocidade maxima de descida
 		a += grav;
 	std::cout << "a: (" << a.x << ", " << a.y << ")" << std::endl;
 

@@ -228,9 +228,33 @@ void Game::LoadData()
 	new SpecialComponent(mPlayer1, sequencia_p1);
 
 	// ------ BOT ------ \\
-	// -- Cria personagem do bot
+	// --- Cria personagem do bot
 	mBot = new Character(this, "Bot");
 	mBot->SetPosition(Vector2(812.0f, 384.0f));
+	// --- Aplica gravidade a p1
+	PhysicsComponent* pc_bot = new PhysicsComponent(mBot);
+	// --- Cria textura do personagem parado
+	SDL_Texture* bot_stoppedtexs = GetTexture("Assets/Fighters/fighter_stopped.png");
+	// --- Cria textura do personagem pulando
+	SDL_Texture* bot_jumpingtexs = GetTexture("Assets/Fighters/fighter_jumping.png");
+	// --- Cria textura do personagem andando
+	std::vector<SDL_Texture*> bot_movingtexs = std::vector<SDL_Texture*>();
+	for (int i = 1; i <= 12; i++) {
+		bot_movingtexs.push_back(GetTexture("Assets/Fighters/fighter_" + std::to_string(i) + ".png"));
+	}
+	// --- Inputs do bot
+	InputComponent* bot_ic = new InputComponent(mBot);
+	bot_ic->SetBackwardKey(SDL_SCANCODE_1);
+	bot_ic->SetForwardKey(SDL_SCANCODE_2);
+	bot_ic->SetJumpKey(SDL_SCANCODE_3);
+	bot_ic->SetDuckKey(SDL_SCANCODE_4);
+	// --- Cria a sprite
+	CharacterSpriteComponent* bot_sprite = new CharacterSpriteComponent(bot_ic, 150);
+	bot_sprite->SetJumpingTexture(bot_jumpingtexs);
+	bot_sprite->SetMovingTextures(bot_movingtexs);
+	bot_sprite->SetStoppedTexture(bot_stoppedtexs);
+	bot_sprite->SetMovingTextureFPS(10.0f);
+	bot_sprite->ChangeTexture(bot_stoppedtexs);
 	// --- cria um golpe especial para o bot
 	std::vector<int> sequencia_bot = {
 		SDL_SCANCODE_O,
