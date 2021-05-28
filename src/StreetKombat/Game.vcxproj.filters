@@ -32,11 +32,17 @@
     <Filter Include="src\Utils\source">
       <UniqueIdentifier>{3a0d823a-9386-481e-9338-da68c316ded2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Scenes">
+      <UniqueIdentifier>{24e91bdb-40ca-4a2c-b6c8-1dba1d7338c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\header">
+      <UniqueIdentifier>{690bb626-9ab5-4759-8490-fc93eb1d0bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\source">
+      <UniqueIdentifier>{51368fa0-3981-4c0d-83ea-dd75e05975f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -85,11 +91,14 @@
     <ClCompile Include="PhysicsComponent.cpp">
       <Filter>src\Components\source</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>src\Scenes\source</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>src\Scenes\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="Actor.h">
       <Filter>src\Actors\header</Filter>
     </ClInclude>
@@ -134,6 +143,12 @@
     </ClInclude>
     <ClInclude Include="PhysicsComponent.h">
       <Filter>src\Components\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>src\Scenes\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>src\Scenes\header</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
