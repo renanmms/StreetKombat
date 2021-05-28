@@ -12,8 +12,9 @@ public:
 	void ProcessInput(const uint8_t* keyState) override;
 	// Set the textures used for animation
 	void SetMovingTextures(const std::vector<SDL_Texture*>& textures);
-	void SetStoppedTexture(SDL_Texture* texture);
-	void SetJumpingTexture(SDL_Texture* texture);
+	void SetIdlingTexture(SDL_Texture* texture);
+	void SetJumpingTextures(const std::vector<SDL_Texture*>& textures);
+	//void SetJumpingTexture(SDL_Texture* texture);
 
 	void SetMovingTextureFPS(float fps) { movingTextureFPS = fps; }
 	
@@ -23,13 +24,14 @@ public:
 private:
 	enum state {
 		STATE_MOVING,
-		STATE_STOPPED,
+		STATE_IDLING,
 		STATE_JUMPING
 	};
 	// All textures in the animation
 	std::vector<SDL_Texture*> mMovingTextures;
-	SDL_Texture* mStoppedTexture;
-	SDL_Texture* mJumpingTexture;
+	SDL_Texture* mIdlingTexture;
+	//SDL_Texture* mJumpingTexture;
+	std::vector<SDL_Texture*> mJumpingTextures;
 	// Current frame displayed
 	float mCurrFrame;
 

@@ -69,6 +69,7 @@ bool Game::Initialize()
 
 	Random::Init();
 
+	//LoadMenu();
 	LoadData();
 
 	mTicksCount = SDL_GetTicks();
@@ -204,21 +205,30 @@ void Game::LoadData()
 	// --- Aplica gravidade a p1
 	PhysicsComponent* pc_p1 = new PhysicsComponent(mPlayer1);
 	// --- Cria textura do personagem parado
-	SDL_Texture* player1_stoppedtexs = GetTexture("Assets/Fighters/fighter_stopped.png");
+	SDL_Texture* player1_idlingtexs = GetTexture("Assets/Fighters/Haggar/haggar_idle.png");
 	// --- Cria textura do personagem pulando
-	SDL_Texture* player1_jumpingtexs = GetTexture("Assets/Fighters/fighter_jumping.png");
+	std::vector<SDL_Texture*> player1_jumpingtexs = std::vector<SDL_Texture*>();
+	for (int i = 1; i <= 3; i++) {
+		player1_jumpingtexs.push_back(GetTexture("Assets/Fighters/Haggar/haggar_jumping_" + std::to_string(i) + ".png"));
+	}
+	//SDL_Texture* player1_jumpingtexs = GetTexture("Assets/Fighters/fighter_jumping.png");
 	// --- Cria textura do personagem andando
 	std::vector<SDL_Texture*> player1_movingtexs = std::vector<SDL_Texture*>();
 	for (int i = 1; i <= 12; i++) {
-		player1_movingtexs.push_back(GetTexture("Assets/Fighters/fighter_" + std::to_string(i) + ".png"));
+		player1_movingtexs.push_back(GetTexture("Assets/Fighters/Haggar/haggar_walk_" + std::to_string(i) + ".png"));
+	}
+	// --- Cria textura do personagem batendo
+	std::vector<SDL_Texture*> player1_punchingtexs = std::vector<SDL_Texture*>();
+	for (int i = 1; i <= 8; i++) {
+		player1_punchingtexs.push_back(GetTexture("Assets/Fighters/Haggar/haggar_punch_" + std::to_string(i) + ".png"));
 	}
 	// --- Cria a sprite
 	CharacterSpriteComponent* player1_sprite = new CharacterSpriteComponent(ic, 150);
-	player1_sprite->SetJumpingTexture(player1_jumpingtexs);
+	player1_sprite->SetJumpingTextures(player1_jumpingtexs);
 	player1_sprite->SetMovingTextures(player1_movingtexs);
-	player1_sprite->SetStoppedTexture(player1_stoppedtexs);
+	player1_sprite->SetIdlingTexture(player1_idlingtexs);
 	player1_sprite->SetMovingTextureFPS(10.0f);
-	player1_sprite->ChangeTexture(player1_stoppedtexs);
+	player1_sprite->ChangeTexture(player1_idlingtexs);
 	// --- Cria um golpe especial para o jogador 1
 	std::vector<int> sequencia_p1 = {
 		SDL_SCANCODE_L,
@@ -235,13 +245,17 @@ void Game::LoadData()
 	// --- Aplica gravidade a p1
 	PhysicsComponent* pc_bot = new PhysicsComponent(mBot);
 	// --- Cria textura do personagem parado
-	SDL_Texture* bot_stoppedtexs = GetTexture("Assets/Fighters/fighter_stopped.png");
+	SDL_Texture* bot_idlingtexs = GetTexture("Assets/Fighters/Cody/cody_idle.png");
 	// --- Cria textura do personagem pulando
-	SDL_Texture* bot_jumpingtexs = GetTexture("Assets/Fighters/fighter_jumping.png");
+	std::vector<SDL_Texture*> bot_jumpingtexs = std::vector<SDL_Texture*>();
+	for (int i = 1; i <= 2; i++) {
+		bot_jumpingtexs.push_back(GetTexture("Assets/Fighters/Cody/cody_jump_" + std::to_string(i) + ".png"));
+	}
+	//SDL_Texture* bot_jumpingtexs = GetTexture("Assets/Fighters/fighter_jumping.png");
 	// --- Cria textura do personagem andando
 	std::vector<SDL_Texture*> bot_movingtexs = std::vector<SDL_Texture*>();
 	for (int i = 1; i <= 12; i++) {
-		bot_movingtexs.push_back(GetTexture("Assets/Fighters/fighter_" + std::to_string(i) + ".png"));
+		bot_movingtexs.push_back(GetTexture("Assets/Fighters/Cody/cody_walk_" + std::to_string(i) + ".png"));
 	}
 	// --- Inputs do bot
 	InputComponent* bot_ic = new InputComponent(mBot);
@@ -251,11 +265,11 @@ void Game::LoadData()
 	bot_ic->SetDuckKey(SDL_SCANCODE_4);
 	// --- Cria a sprite
 	CharacterSpriteComponent* bot_sprite = new CharacterSpriteComponent(bot_ic, 150);
-	bot_sprite->SetJumpingTexture(bot_jumpingtexs);
+	bot_sprite->SetJumpingTextures(bot_jumpingtexs);
 	bot_sprite->SetMovingTextures(bot_movingtexs);
-	bot_sprite->SetStoppedTexture(bot_stoppedtexs);
+	bot_sprite->SetIdlingTexture(bot_idlingtexs);
 	bot_sprite->SetMovingTextureFPS(10.0f);
-	bot_sprite->ChangeTexture(bot_stoppedtexs);
+	bot_sprite->ChangeTexture(bot_idlingtexs);
 	// --- cria um golpe especial para o bot
 	std::vector<int> sequencia_bot = {
 		SDL_SCANCODE_O,
@@ -436,3 +450,19 @@ void Game::RemoveSprite(SpriteComponent* sprite)
 	if (iter != mSprites.end())
 		mSprites.erase(iter);
 }
+
+/*void Game::LoadMenu()
+{
+	// mostra o menu inicial
+
+	SDL_Surface* screen = SDL_GetWindowSurface( mWindow );
+	Uint32 black = SDL_MapRGB(screen->format, 0, 0, 0);
+	Uint32 red = SDL_MapRGB(screen->format, 255, 0, 0);
+	SDL_FillRect(screen, NULL, black);
+	SDL_UpdateWindowSurface(mWindow);
+
+	SDL_Texture* menu_game_logo = GetTexture("Assets/Fighters/fighter_idle.png");
+
+
+
+}*/
