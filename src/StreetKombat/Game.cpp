@@ -336,10 +336,6 @@ void Game::LoadData()
 	PhysicsComponent* pc_bot = new PhysicsComponent(mBot);
 	// --- Inputs do bot
 	InputComponent* bot_ic = new InputComponent(mBot);
-	bot_ic->SetBackwardKey(SDL_SCANCODE_1);
-	bot_ic->SetForwardKey(SDL_SCANCODE_2);
-	bot_ic->SetJumpKey(SDL_SCANCODE_3);
-	bot_ic->SetDuckKey(SDL_SCANCODE_4);
 	// --- Cria a sprite
 	CharacterSpriteComponent* bot_sprite = new CharacterSpriteComponent(bot_ic, 150);
 	bot_sprite->LoadCharacter(player_2);

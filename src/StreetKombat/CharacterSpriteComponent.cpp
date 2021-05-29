@@ -40,7 +40,7 @@ void CharacterSpriteComponent::ProcessInput(const uint8_t* keyState)
 			ChangeTexture(mIdlingTexture);
 			break;
 		case STATE_PUNCH:
-			ChangeTexture(mPunchTextures, 10, true);
+			ChangeTexture(mPunchTextures, 10);
 		default:
 			break;
 		}
@@ -126,7 +126,7 @@ void CharacterSpriteComponent::LoadCharacter(Game::character c)
 	case Game::DEEJAY:
 		player.name = "deejay";
 		player.jump_fps = 8.0f;
-		player.jump = 8;
+		player.jump = 7;
 		player.walk_fps = 10.0f;
 		player.walk = 5;
 		player.punch = 0;

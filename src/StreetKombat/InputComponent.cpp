@@ -8,6 +8,8 @@
 
 #include "InputComponent.h"
 #include "Actor.h"
+#include "CircleComponent.h"
+#include "Game.h"
 #include <iostream>
 
 InputComponent::InputComponent(class Actor* owner)
@@ -64,14 +66,24 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 	if (keyState[mPunchKey] && punchCooldown <= 0)
 	{
 		isPunching = true;
-		punchCooldown = 2;
+		punchCooldown = 0.7;
 		std::cout << "PREPARE..." << std::endl;
 	}
-	if (punchDelay > 1)
+	if (punchDelay > 0.3)
 	{
 		punchDelay = 0;
 		isPunching = false;
 		std::cout << "PUNCH" << std::endl;
+		Actor* tmp = new Actor(GetActor()->GetGame());
+		tmp->SetPosition(GetActor()->GetPosition() + GetActor()->GetDirection() * Vector2(100, 0));
+		CircleComponent* cc = new CircleComponent(tmp, 5);
+		
+		Character* owner = static_cast<Character*>(GetActor());
+		Character* enemy = GetActor()->GetGame()->GetOpponent(owner);
+		if (cc->Colide(*(enemy->mHitBox))) {
+			enemy->Hit(0.1f);
+		}
+		tmp->SetState(Actor::EDead);
 	}
 	
 	mSpeed = mOwner->GetDirection()*currentSpeed;
