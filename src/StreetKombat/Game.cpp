@@ -313,6 +313,7 @@ void Game::LoadData()
 	ic->SetForwardKey(SDL_SCANCODE_D);
 	ic->SetJumpKey(SDL_SCANCODE_W);
 	ic->SetDuckKey(SDL_SCANCODE_S);
+	ic->SetPunchKey(SDL_SCANCODE_SPACE);
 	// --- Aplica gravidade a p1
 	PhysicsComponent* pc_p1 = new PhysicsComponent(mPlayer1);
 	// --- Cria a sprite
