@@ -76,9 +76,9 @@ void Bot::UpdateActor(float deltaTime)
 		new_state = E10;
 		break;
 	case E10:
-		if (rand < 0.05)
+		if (rand < 0.08)
 			new_state = E11;
-		else if (rand < 0.09)
+		else if (rand < 0.12)
 			new_state = E12;
 		else
 			new_state = E7;
