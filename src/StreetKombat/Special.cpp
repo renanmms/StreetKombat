@@ -18,7 +18,7 @@
 
 Special::Special(Game* game, class Character* caster)
 	:Actor(game)
-	,mDeathTimer(1.0f)
+	,mDeathTimer(2.0f)
 	,mCaster(caster)
 	,mDamage(0.1f)
 {

@@ -62,12 +62,13 @@ void Bot::UpdateActor(float deltaTime)
 		new_state = E0;
 		break;
 	case E7:
-		if (distance > 500)
+		if (distance > 600)
 			new_state = E8;
 		else
 			new_state = E9;
 		break;
 	case E8:
+		RushIn(player, deltaTime);
 		new_state = E10;
 		break;
 	case E9:
@@ -77,7 +78,7 @@ void Bot::UpdateActor(float deltaTime)
 	case E10:
 		if (rand < 0.05)
 			new_state = E11;
-		else if (rand < 0.8)
+		else if (rand < 0.09)
 			new_state = E12;
 		else
 			new_state = E7;
@@ -94,7 +95,6 @@ void Bot::UpdateActor(float deltaTime)
 		break;
 	}
 
-	//std::cout << "Bot says: " << mCurrentState << " -> " << new_state << std::endl;
 	mCurrentState = new_state;
 }
 
