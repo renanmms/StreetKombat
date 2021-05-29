@@ -29,6 +29,7 @@ public:
 	void RemoveSprite(class SpriteComponent* sprite);
 
 	void drawLifeBar(float hp, int pos_x, int pos_y, int width);
+	void drawText(SDL_Surface* screen, int x, int y, int w, int h, char* texto);
 	
 	SDL_Texture* GetTexture(const std::string& fileName);
 
@@ -36,6 +37,12 @@ public:
 	SDL_Renderer* GetRenderer();
 	const BoundingBoxComponent GetGround();
 	const std::vector<BoundingBoxComponent*> GetWalls();
+
+	enum character {
+		HAGGAR,
+		DEEJAY,
+		CODY
+	};
 
 private:
 	void ProcessInput();
@@ -70,8 +77,8 @@ private:
 	class Character* mPlayer2; // Player 2 - can be playing or not
 	class Character* mBot;		 // Bot			 - A.I - can be playing or not
 
-	std::string Player1CharacterName;
-	std::string Player2CharacterName;
+	character player_1;
+	character player_2;
 
 	// Ch�o
 	BoundingBoxComponent* mGround;

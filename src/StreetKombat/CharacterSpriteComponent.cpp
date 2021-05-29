@@ -98,3 +98,79 @@ void CharacterSpriteComponent::ChangeTexture(SDL_Texture* staticTexture)
 	staticSprite = new SpriteComponent(mOwner, 150);
 	staticSprite->SetTexture(staticTexture);
 }
+
+void CharacterSpriteComponent::LoadCharacter(Game::character c)
+{
+	personagem player;
+	switch (c)
+	{
+	case Game::HAGGAR:
+		player.name = "haggar";
+		player.jump_fps = 2.5f;
+		player.jump = 2;
+		player.walk_fps = 10.0f;
+		player.walk = 12;
+		player.punch = 8;
+		player.kick = 3;
+		player.dying = 8;
+		player.revive = 3;
+		player.name_width = 160;
+		break;
+	case Game::DEEJAY:
+		player.name = "deejay";
+		player.jump_fps = 8.0f;
+		player.jump = 8;
+		player.walk_fps = 10.0f;
+		player.walk = 5;
+		player.punch = 0;
+		player.kick = 0;
+		player.dying = 0;
+		player.revive = 0;
+		player.name_width = 165;
+		break;
+	case Game::CODY:
+		player.name = "cody";
+		player.jump_fps = 2.5f;
+		player.jump = 2;
+		player.walk_fps = 10.0f;
+		player.walk = 12;
+		player.punch = 4;
+		player.kick = 3;
+		player.dying = 2;
+		player.revive = 2;
+		player.name_width = 110;
+		break;
+	}
+
+	// --- Cria textura do personagem parado
+	SDL_Texture* idlingtexs = mOwner->GetGame()->GetTexture("Assets/Fighters/" + player.name + "/" + player.name + "_idle.png");
+	// --- Cria textura do personagem pulando
+	std::vector<SDL_Texture*> jumpingtexs = std::vector<SDL_Texture*>();
+	for (int i = 1; i <= player.jump; i++) {
+		jumpingtexs.push_back(mOwner->GetGame()->GetTexture("Assets/Fighters/" + player.name + "/" + player.name + "_jump_" + std::to_string(i) + ".png"));
+	}
+	//SDL_Texture* player1_jumpingtexs = GetTexture("Assets/Fighters/fighter_jumping.png");
+	// --- Cria textura do personagem andando
+	std::vector<SDL_Texture*> movingtexs = std::vector<SDL_Texture*>();
+	for (int i = 1; i <= player.walk; i++) {
+		movingtexs.push_back(mOwner->GetGame()->GetTexture("Assets/Fighters/" + player.name + "/" + player.name + "_walk_" + std::to_string(i) + ".png"));
+	}
+	// --- Cria textura do personagem batendo
+	std::vector<SDL_Texture*> punchingtexs = std::vector<SDL_Texture*>();
+	for (int i = 1; i <= player.punch; i++) {
+		punchingtexs.push_back(mOwner->GetGame()->GetTexture("Assets/Fighters/" + player.name + "/" + player.name + "_punch_" + std::to_string(i) + ".png"));
+	}
+	// --- Cria textura do personagem morrendo
+	std::vector<SDL_Texture*> dieingtexs = std::vector<SDL_Texture*>();
+	for (int i = 1; i <= player.dying; i++) {
+		dieingtexs.push_back(mOwner->GetGame()->GetTexture("Assets/Fighters/" + player.name + "/" + player.name + "_death_" + std::to_string(i) + ".png"));
+	}
+
+	SetJumpingTextures(jumpingtexs);
+	SetMovingTextures(movingtexs);
+	SetIdlingTexture(idlingtexs);
+	SetMovingTextureFPS(player.walk_fps);
+	SetJumpingTextureFPS(player.jump_fps);
+	ChangeTexture(idlingtexs);
+
+}
