@@ -1,6 +1,7 @@
 #include "CharacterSpriteComponent.h"
 #include "InputComponent.h"
 #include "Actor.h"
+#include <iostream>
 #include "Game.h"
 
 CharacterSpriteComponent::CharacterSpriteComponent(InputComponent* input,  int drawOrder)
@@ -19,6 +20,11 @@ void CharacterSpriteComponent::ProcessInput(const uint8_t* keyState)
 		iteration_state = STATE_JUMPING;
 	else if (keyState[mInput->GetForwardKey()] || keyState[mInput->GetBackKey()])
 		iteration_state = STATE_MOVING;
+	else if (keyState[mInput->GetPunchKey()]) {
+		iteration_state = STATE_PUNCH;
+		//std::cout << "Tecla soco apertada" << std::endl;
+	}
+
 
 	if (current_state != iteration_state)
 	{
@@ -26,7 +32,7 @@ void CharacterSpriteComponent::ProcessInput(const uint8_t* keyState)
 		{
 		case STATE_JUMPING:
 			// TODO: Colocar cooldown no pulo
-			ChangeTexture(mJumpingTextures,2.5);
+			ChangeTexture(mJumpingTextures, 2.5);
 			break;
 		case STATE_MOVING:
 			ChangeTexture(mMovingTextures, movingTextureFPS);
@@ -34,6 +40,8 @@ void CharacterSpriteComponent::ProcessInput(const uint8_t* keyState)
 		case STATE_IDLING:
 			ChangeTexture(mIdlingTexture);
 			break;
+		case STATE_PUNCH:
+			ChangeTexture(mPunchTextures, 10, true);
 		default:
 			break;
 		}
@@ -61,7 +69,12 @@ void CharacterSpriteComponent::SetJumpingTextures(const std::vector<SDL_Texture*
 	mJumpingTextures = textures;
 }
 
-void CharacterSpriteComponent::ChangeTexture(std::vector<SDL_Texture*> animatedTexture, float FPS)
+void CharacterSpriteComponent::SetAttackTextures(const std::vector<SDL_Texture*>& textures)
+{
+	mPunchTextures = textures;
+}
+
+void CharacterSpriteComponent::ChangeTexture(std::vector<SDL_Texture*> animatedTexture, float FPS, bool singleExecution)
 {
 	if (animatedSprite != nullptr)
 	{
@@ -76,7 +89,7 @@ void CharacterSpriteComponent::ChangeTexture(std::vector<SDL_Texture*> animatedT
 	}
 
 
-	animatedSprite = new AnimSpriteComponent(mOwner, 150);
+	animatedSprite = new AnimSpriteComponent(mOwner, 150, singleExecution);
 	animatedSprite->SetAnimTextures(animatedTexture);
 	animatedSprite->SetAnimFPS(FPS);
 }

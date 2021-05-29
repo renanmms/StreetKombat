@@ -4,7 +4,7 @@
 class AnimSpriteComponent : public SpriteComponent
 {
 public:
-	AnimSpriteComponent(class Actor* owner, int drawOrder = 100);
+	AnimSpriteComponent(class Actor* owner, int drawOrder = 100, bool singleExecution = false);
 	virtual ~AnimSpriteComponent() {}
 	// Update animation every frame (overriden from component)
 	void Update(float deltaTime) override;
@@ -13,6 +13,9 @@ public:
 	// Set/get the animation FPS
 	float GetAnimFPS() const { return mAnimFPS; }
 	void SetAnimFPS(float fps) { mAnimFPS = fps; }
+
+
+
 private:
 	// All textures in the animation
 	std::vector<SDL_Texture*> mAnimTextures;
@@ -20,4 +23,6 @@ private:
 	float mCurrFrame;
 	// Animation frame rate
 	float mAnimFPS;
+
+	bool singleExecution;
 };

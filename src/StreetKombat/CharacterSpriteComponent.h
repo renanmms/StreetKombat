@@ -14,24 +14,27 @@ public:
 	void SetMovingTextures(const std::vector<SDL_Texture*>& textures);
 	void SetIdlingTexture(SDL_Texture* texture);
 	void SetJumpingTextures(const std::vector<SDL_Texture*>& textures);
+	void SetAttackTextures(const std::vector<SDL_Texture*>& textures);
 	//void SetJumpingTexture(SDL_Texture* texture);
 
 	void SetMovingTextureFPS(float fps) { movingTextureFPS = fps; }
 	
-	void ChangeTexture(std::vector<SDL_Texture*> animatedTexture, float FPS);
+	void ChangeTexture(std::vector<SDL_Texture*> animatedTexture, float FPS, bool singleExecution = false);
 	void ChangeTexture(SDL_Texture* staticTexture);
 
 private:
 	enum state {
 		STATE_MOVING,
 		STATE_IDLING,
-		STATE_JUMPING
+		STATE_JUMPING,
+		STATE_PUNCH
 	};
 	// All textures in the animation
 	std::vector<SDL_Texture*> mMovingTextures;
 	SDL_Texture* mIdlingTexture;
 	//SDL_Texture* mJumpingTexture;
 	std::vector<SDL_Texture*> mJumpingTextures;
+	std::vector<SDL_Texture*> mPunchTextures;
 	// Current frame displayed
 	float mCurrFrame;
 

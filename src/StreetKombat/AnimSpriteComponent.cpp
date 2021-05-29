@@ -3,10 +3,11 @@
 
 //implementação do componente de sprite animado
 
-AnimSpriteComponent::AnimSpriteComponent(Actor* owner, int drawOrder)
+AnimSpriteComponent::AnimSpriteComponent(Actor* owner, int drawOrder, bool singleExecution)
 	:SpriteComponent(owner, drawOrder)
 	, mCurrFrame(0.0f)//frame corrente na animação
 	, mAnimFPS(24.0f)//velocidade de atualização do componente
+	, singleExecution(singleExecution)
 {
 }
 
@@ -14,12 +15,17 @@ void AnimSpriteComponent::Update(float deltaTime)//função para atualizar o compo
 {
 	SpriteComponent::Update(deltaTime);//chama a função já definida no componente de sprite
 
+
 	if (mAnimTextures.size() > 0)
 	{
 		// Update the current frame based on frame rate
 		// and delta time
 		mCurrFrame += mAnimFPS * deltaTime;
 
+		if(singleExecution && mCurrFrame > mAnimTextures.size())
+		{
+			return;
+		}
 		// Wrap current frame if needed
 		//if the current frame is greater than the last one of the vector, it will be the first sprite of the animation
 		while (mCurrFrame >= mAnimTextures.size())
@@ -30,6 +36,7 @@ void AnimSpriteComponent::Update(float deltaTime)//função para atualizar o compo
 		// Set the current texture
 		SetTexture(mAnimTextures[static_cast<int>(mCurrFrame)]);
 	}
+
 }
 
 //set the animation to the first sprite

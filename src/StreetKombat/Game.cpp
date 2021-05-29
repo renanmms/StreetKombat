@@ -202,6 +202,7 @@ void Game::LoadData()
 	ic->SetForwardKey(SDL_SCANCODE_D);
 	ic->SetJumpKey(SDL_SCANCODE_W);
 	ic->SetDuckKey(SDL_SCANCODE_S);
+	ic->SetPunchKey(SDL_SCANCODE_SPACE);
 	// --- Aplica gravidade a p1
 	PhysicsComponent* pc_p1 = new PhysicsComponent(mPlayer1);
 	// --- Cria textura do personagem parado
@@ -221,11 +222,15 @@ void Game::LoadData()
 	std::vector<SDL_Texture*> player1_punchingtexs = std::vector<SDL_Texture*>();
 	for (int i = 1; i <= 8; i++) {
 		player1_punchingtexs.push_back(GetTexture("Assets/Fighters/Haggar/haggar_punch_" + std::to_string(i) + ".png"));
+		
 	}
+	player1_punchingtexs.push_back(GetTexture("Assets/Fighters/Haggar/haggar_idle.png"));
+
 	// --- Cria a sprite
 	CharacterSpriteComponent* player1_sprite = new CharacterSpriteComponent(ic, 150);
 	player1_sprite->SetJumpingTextures(player1_jumpingtexs);
 	player1_sprite->SetMovingTextures(player1_movingtexs);
+	player1_sprite->SetAttackTextures(player1_punchingtexs);
 	player1_sprite->SetIdlingTexture(player1_idlingtexs);
 	player1_sprite->SetMovingTextureFPS(10.0f);
 	player1_sprite->ChangeTexture(player1_idlingtexs);

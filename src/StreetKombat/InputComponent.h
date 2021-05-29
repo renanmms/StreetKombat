@@ -24,12 +24,15 @@ public:
 	int GetBackKey() const { return mBackwardKey; }
 	int GetJumpKey() const { return mJumpKey; }
 	int GetDuckKey() const { return mDuckKey; }
+	int GetPunchKey() const { return mPunchKey; }
 
 	void SetForwardKey(int key) { mForwardKey = key; }
 	void SetBackwardKey(int key) { mBackwardKey = key; }
 	void SetJumpKey(int key) { mJumpKey = key; }
 	void SetDuckKey(int key) { mDuckKey = key; }
+	void SetPunchKey(int key) { mPunchKey = key; }
 	bool IsJumping() { return isJumping; }
+	//bool IsPunching() { return isPunching; }
 	
 	Actor* GetActor() { return mOwner; }
 
@@ -43,6 +46,12 @@ private:
 	// Keys for vertical movement
 	int mJumpKey;
 	int mDuckKey;
+	int mPunchKey;
 	// Controle de pulo
 	bool isJumping;
+	bool isPunching;
+
+	float punchCooldown;
+	float punchDelay;
+	
 };
