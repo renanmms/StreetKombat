@@ -200,7 +200,7 @@ void Game::GenerateOutput()
 		0;
 
 	bot_width = player_2 == HAGGAR ? 160 :
-		player_2 == DEEJAY ? 145 :
+		player_2 == DEEJAY ? 145 :	
 		player_2 == CODY ? 110 :
 		0;
 
@@ -239,7 +239,15 @@ void Game::drawLifeBar(float hp, int pos_x, int pos_y, int width)
 	SDL_RenderFillRect(mRenderer, &bg);
 
 	// HP
-	SDL_SetRenderDrawColor(mRenderer, 255, 0, 0, 255);
+
+	if (hp > 0.7)
+		SDL_SetRenderDrawColor(mRenderer, 63, 154, 40, 255);
+
+	else if (hp > 0.4)
+		SDL_SetRenderDrawColor(mRenderer, 187, 230, 87, 255);
+	else
+		SDL_SetRenderDrawColor(mRenderer, 255, 0, 0, 255);
+
 	SDL_Rect bar{
 		static_cast<int>(pos_x),
 		static_cast<int>(pos_y),
