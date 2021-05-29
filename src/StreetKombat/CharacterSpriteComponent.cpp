@@ -69,7 +69,7 @@ void CharacterSpriteComponent::SetJumpingTextures(const std::vector<SDL_Texture*
 	mJumpingTextures = textures;
 }
 
-void CharacterSpriteComponent::SetAttackTextures(const std::vector<SDL_Texture*>& textures)
+void CharacterSpriteComponent::SetPunchTextures(const std::vector<SDL_Texture*>& textures)
 {
 	mPunchTextures = textures;
 }
@@ -182,6 +182,7 @@ void CharacterSpriteComponent::LoadCharacter(Game::character c)
 	SetJumpingTextures(jumpingtexs);
 	SetMovingTextures(movingtexs);
 	SetIdlingTexture(idlingtexs);
+	SetPunchTextures(punchingtexs);
 	SetMovingTextureFPS(player.walk_fps);
 	SetJumpingTextureFPS(player.jump_fps);
 	ChangeTexture(idlingtexs);

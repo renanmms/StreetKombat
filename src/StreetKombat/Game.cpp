@@ -35,7 +35,7 @@ Game::Game()
 ,mRenderer(nullptr)
 ,mIsRunning(true)
 ,mUpdatingActors(false)
-,player_1(DEEJAY)
+,player_1(HAGGAR)
 ,player_2(DEEJAY)
 {
 	

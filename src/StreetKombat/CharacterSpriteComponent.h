@@ -17,7 +17,7 @@ public:
 	void SetMovingTextures(const std::vector<SDL_Texture*>& textures);
 	void SetIdlingTexture(SDL_Texture* texture);
 	void SetJumpingTextures(const std::vector<SDL_Texture*>& textures);
-	void SetAttackTextures(const std::vector<SDL_Texture*>& textures);
+	void SetPunchTextures(const std::vector<SDL_Texture*>& textures);
 	//void SetJumpingTexture(SDL_Texture* texture);
 
 	void SetMovingTextureFPS(float fps) { movingTextureFPS = fps; }
