@@ -22,7 +22,6 @@ void CharacterSpriteComponent::ProcessInput(const uint8_t* keyState)
 		iteration_state = STATE_MOVING;
 	else if (keyState[mInput->GetPunchKey()]) {
 		iteration_state = STATE_PUNCH;
-		//std::cout << "Tecla soco apertada" << std::endl;
 	}
 
 
@@ -58,11 +57,6 @@ void CharacterSpriteComponent::SetIdlingTexture(SDL_Texture* texture)
 {
 	mIdlingTexture = texture;
 }
-
-/*void CharacterSpriteComponent::SetJumpingTexture(SDL_Texture* texture)
-{
-	mJumpingTexture = texture;
-}*/
 
 void CharacterSpriteComponent::SetJumpingTextures(const std::vector<SDL_Texture*>& textures)
 {
@@ -162,7 +156,6 @@ void CharacterSpriteComponent::LoadCharacter(Game::character c)
 	for (int i = 1; i <= player.jump; i++) {
 		jumpingtexs.push_back(mOwner->GetGame()->GetTexture("Assets/Fighters/" + player.name + "/" + player.name + "_jump_" + std::to_string(i) + ".png"));
 	}
-	//SDL_Texture* player1_jumpingtexs = GetTexture("Assets/Fighters/fighter_jumping.png");
 	// --- Cria textura do personagem andando
 	std::vector<SDL_Texture*> movingtexs = std::vector<SDL_Texture*>();
 	for (int i = 1; i <= player.walk; i++) {

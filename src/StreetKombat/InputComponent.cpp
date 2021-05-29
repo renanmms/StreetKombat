@@ -8,7 +8,7 @@
 
 #include "InputComponent.h"
 #include "Actor.h"
-#include <stdio.h>
+#include <iostream>
 
 InputComponent::InputComponent(class Actor* owner)
 :PhysicsComponent(owner)
@@ -60,24 +60,18 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 		mOwner->SetDirection(Vector2(-1, 0));
 		currentSpeed = mWalkSpeed;
 	}
-	//std::cout << "punchCooldown: " << punchCooldown << std::endl;
-	//std::cout << "punchDelay: " << punchDelay << std::endl << std::endl;
 	
 	if (keyState[mPunchKey] && punchCooldown <= 0)
 	{
 		isPunching = true;
-		punchCooldown = 1;
+		punchCooldown = 2;
+		std::cout << "PREPARE..." << std::endl;
 	}
 	if (punchDelay > 1)
 	{
 		punchDelay = 0;
-		// TO-DO Socar
-		printf("Entrou no ProcessInput\n");
-	}
-	else {
 		isPunching = false;
-		punchDelay = 0;
-		punchCooldown = 0;
+		std::cout << "PUNCH" << std::endl;
 	}
 	
 	mSpeed = mOwner->GetDirection()*currentSpeed;
