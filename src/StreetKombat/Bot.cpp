@@ -129,7 +129,7 @@ void Bot::Attack(Character* player, float deltaTime)
 
 void Bot::Jump()
 {
-	if (GetPosition().y > 600)
+	if (GetPosition().y > 640)
 	{
 		applyForce(Vector2(0, -450.0f));
 	}

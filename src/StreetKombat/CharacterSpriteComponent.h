@@ -1,8 +1,11 @@
 #pragma once
 #include "Component.h"
+#include "Game.h"
 #include <vector>
 #include "SpriteComponent.h"
 #include "AnimSpriteComponent.h"
+#include <string>
+
 class CharacterSpriteComponent :
     public Component
 {
@@ -18,9 +21,25 @@ public:
 	//void SetJumpingTexture(SDL_Texture* texture);
 
 	void SetMovingTextureFPS(float fps) { movingTextureFPS = fps; }
+	void SetJumpingTextureFPS(float fps) { jumpingTextureFPS = fps; }
 	
 	void ChangeTexture(std::vector<SDL_Texture*> animatedTexture, float FPS, bool singleExecution = false);
 	void ChangeTexture(SDL_Texture* staticTexture);
+
+	struct personagem {
+		std::string name;
+		int jump_fps;
+		int jump;
+		int walk_fps;
+		int walk;
+		int punch;
+		int kick;
+		int dying;
+		int revive;
+		int name_width;
+	};
+
+	void LoadCharacter(Game::character c);
 
 private:
 	enum state {
@@ -29,6 +48,8 @@ private:
 		STATE_JUMPING,
 		STATE_PUNCH
 	};
+
+
 	// All textures in the animation
 	std::vector<SDL_Texture*> mMovingTextures;
 	SDL_Texture* mIdlingTexture;
@@ -39,6 +60,7 @@ private:
 	float mCurrFrame;
 
 	float movingTextureFPS;
+	float jumpingTextureFPS;
 
 	InputComponent* mInput;
 
