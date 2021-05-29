@@ -26,7 +26,7 @@ void CharacterSpriteComponent::ProcessInput(const uint8_t* keyState)
 		{
 		case STATE_JUMPING:
 			// TODO: Colocar cooldown no pulo
-			ChangeTexture(mJumpingTextures,2.5);
+			ChangeTexture(mJumpingTextures, jumpingTextureFPS);
 			break;
 		case STATE_MOVING:
 			ChangeTexture(mMovingTextures, movingTextureFPS);

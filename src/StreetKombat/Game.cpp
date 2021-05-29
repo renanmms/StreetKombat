@@ -164,14 +164,62 @@ void Game::GenerateOutput()
 {
 	SDL_SetRenderDrawColor(mRenderer, 220, 220, 220, 255);
 	SDL_RenderClear(mRenderer);
-	
+
+
 	// Draw all sprite components
 	for (auto sprite : mSprites)
 	{
 		sprite->Draw(mRenderer);
 	}
 
+	float hp_player = mPlayer1->getHP() > 0 ? mPlayer1->getHP() : 0;
+
+	float hp_bot = mBot->getHP() > 0 ? mBot->getHP() : 0;
+
+	drawLifeBar(hp_player, 50, 50, 300);
+
+	drawLifeBar(hp_bot, 650, 50, 300);
+
+
+
 	SDL_RenderPresent(mRenderer);
+}
+
+void Game::drawLifeBar(float hp, int pos_x, int pos_y, int width)
+{
+
+	// contorno
+	SDL_SetRenderDrawColor(mRenderer, 255, 255, 0, 255);
+	SDL_Rect contorno{
+		static_cast<int>(pos_x - 4), // x
+		static_cast<int>(pos_y - 5), // y
+	width+8,
+	38
+	};
+	SDL_RenderFillRect(mRenderer, &contorno);
+
+	// background
+	SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
+	SDL_Rect bg{
+		static_cast<int>(pos_x),
+		static_cast<int>(pos_y),
+	width,
+	30
+	};
+
+	SDL_RenderFillRect(mRenderer, &bg);
+
+	// HP
+	SDL_SetRenderDrawColor(mRenderer, 255, 0, 0, 255);
+	SDL_Rect bar{
+		static_cast<int>(pos_x),
+		static_cast<int>(pos_y),
+	hp * width,
+	30
+	};
+
+	SDL_RenderFillRect(mRenderer, &bar);
+
 }
 
 void Game::LoadData()
@@ -196,6 +244,7 @@ void Game::LoadData()
 	// --- Cria o personagem do jogador 1
 	mPlayer1 = new Character(this, "Player1");
 	mPlayer1->SetPosition(Vector2(512.0f, 384.0f));
+
 	// --- Movimentação do player 1 (p1)
 	InputComponent* ic = new InputComponent(mPlayer1);
 	ic->SetBackwardKey(SDL_SCANCODE_A);
@@ -205,22 +254,22 @@ void Game::LoadData()
 	// --- Aplica gravidade a p1
 	PhysicsComponent* pc_p1 = new PhysicsComponent(mPlayer1);
 	// --- Cria textura do personagem parado
-	SDL_Texture* player1_idlingtexs = GetTexture("Assets/Fighters/Haggar/haggar_idle.png");
+	SDL_Texture* player1_idlingtexs = GetTexture("Assets/Fighters/deejay/deejay_idle.png");
 	// --- Cria textura do personagem pulando
 	std::vector<SDL_Texture*> player1_jumpingtexs = std::vector<SDL_Texture*>();
-	for (int i = 1; i <= 3; i++) {
-		player1_jumpingtexs.push_back(GetTexture("Assets/Fighters/Haggar/haggar_jumping_" + std::to_string(i) + ".png"));
+	for (int i = 1; i <= 8; i++) {
+		player1_jumpingtexs.push_back(GetTexture("Assets/Fighters/deejay/deejay_jumping_" + std::to_string(i) + ".png"));
 	}
 	//SDL_Texture* player1_jumpingtexs = GetTexture("Assets/Fighters/fighter_jumping.png");
 	// --- Cria textura do personagem andando
 	std::vector<SDL_Texture*> player1_movingtexs = std::vector<SDL_Texture*>();
-	for (int i = 1; i <= 12; i++) {
-		player1_movingtexs.push_back(GetTexture("Assets/Fighters/Haggar/haggar_walk_" + std::to_string(i) + ".png"));
+	for (int i = 1; i <= 5; i++) {
+		player1_movingtexs.push_back(GetTexture("Assets/Fighters/deejay/deejay_walk_" + std::to_string(i) + ".png"));
 	}
 	// --- Cria textura do personagem batendo
 	std::vector<SDL_Texture*> player1_punchingtexs = std::vector<SDL_Texture*>();
 	for (int i = 1; i <= 8; i++) {
-		player1_punchingtexs.push_back(GetTexture("Assets/Fighters/Haggar/haggar_punch_" + std::to_string(i) + ".png"));
+		player1_punchingtexs.push_back(GetTexture("Assets/Fighters/deejay/deejay_punch_" + std::to_string(i) + ".png"));
 	}
 	// --- Cria a sprite
 	CharacterSpriteComponent* player1_sprite = new CharacterSpriteComponent(ic, 150);
@@ -228,6 +277,7 @@ void Game::LoadData()
 	player1_sprite->SetMovingTextures(player1_movingtexs);
 	player1_sprite->SetIdlingTexture(player1_idlingtexs);
 	player1_sprite->SetMovingTextureFPS(10.0f);
+	player1_sprite->SetJumpingTextureFPS(8.0f);
 	player1_sprite->ChangeTexture(player1_idlingtexs);
 	// --- Cria um golpe especial para o jogador 1
 	std::vector<int> sequencia_p1 = {
@@ -269,6 +319,7 @@ void Game::LoadData()
 	bot_sprite->SetMovingTextures(bot_movingtexs);
 	bot_sprite->SetIdlingTexture(bot_idlingtexs);
 	bot_sprite->SetMovingTextureFPS(10.0f);
+	bot_sprite->SetJumpingTextureFPS(2.5f);
 	bot_sprite->ChangeTexture(bot_idlingtexs);
 	// --- cria um golpe especial para o bot
 	std::vector<int> sequencia_bot = {

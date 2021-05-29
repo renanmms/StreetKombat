@@ -8,6 +8,7 @@
 
 #pragma once
 #include "SDL/SDL.h"
+#include "SDL/SDL_ttf.h"
 #include "Character.h"
 #include <unordered_map>
 #include <string>
@@ -26,6 +27,8 @@ public:
 
 	void AddSprite(class SpriteComponent* sprite);
 	void RemoveSprite(class SpriteComponent* sprite);
+
+	void drawLifeBar(float hp, int pos_x, int pos_y, int width);
 	
 	SDL_Texture* GetTexture(const std::string& fileName);
 

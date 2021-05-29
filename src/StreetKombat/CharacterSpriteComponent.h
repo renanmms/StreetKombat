@@ -17,6 +17,7 @@ public:
 	//void SetJumpingTexture(SDL_Texture* texture);
 
 	void SetMovingTextureFPS(float fps) { movingTextureFPS = fps; }
+	void SetJumpingTextureFPS(float fps) { jumpingTextureFPS = fps; }
 	
 	void ChangeTexture(std::vector<SDL_Texture*> animatedTexture, float FPS);
 	void ChangeTexture(SDL_Texture* staticTexture);
@@ -36,6 +37,7 @@ private:
 	float mCurrFrame;
 
 	float movingTextureFPS;
+	float jumpingTextureFPS;
 
 	InputComponent* mInput;
 
