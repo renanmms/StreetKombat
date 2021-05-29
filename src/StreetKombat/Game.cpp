@@ -35,6 +35,8 @@ Game::Game()
 ,mRenderer(nullptr)
 ,mIsRunning(true)
 ,mUpdatingActors(false)
+,Player1CharacterName("haggar")
+,Player2CharacterName("cody")
 {
 	
 }
@@ -245,7 +247,7 @@ void Game::LoadData()
 	mPlayer1 = new Character(this, "Player1");
 	mPlayer1->SetPosition(Vector2(512.0f, 384.0f));
 
-	// --- Movimentação do player 1 (p1)
+	// --- Movimentaï¿½ï¿½o do player 1 (p1)
 	InputComponent* ic = new InputComponent(mPlayer1);
 	ic->SetBackwardKey(SDL_SCANCODE_A);
 	ic->SetForwardKey(SDL_SCANCODE_D);
@@ -254,22 +256,27 @@ void Game::LoadData()
 	// --- Aplica gravidade a p1
 	PhysicsComponent* pc_p1 = new PhysicsComponent(mPlayer1);
 	// --- Cria textura do personagem parado
-	SDL_Texture* player1_idlingtexs = GetTexture("Assets/Fighters/deejay/deejay_idle.png");
+	SDL_Texture* player1_idlingtexs = GetTexture("Assets/Fighters/" + Player1CharacterName + "/" + Player1CharacterName + "_idle.png");
 	// --- Cria textura do personagem pulando
 	std::vector<SDL_Texture*> player1_jumpingtexs = std::vector<SDL_Texture*>();
-	for (int i = 1; i <= 8; i++) {
-		player1_jumpingtexs.push_back(GetTexture("Assets/Fighters/deejay/deejay_jumping_" + std::to_string(i) + ".png"));
+	for (int i = 1; i <= 2; i++) {
+		player1_jumpingtexs.push_back(GetTexture("Assets/Fighters/" + Player1CharacterName + "/" + Player1CharacterName + "_jump_" + std::to_string(i) + ".png"));
 	}
 	//SDL_Texture* player1_jumpingtexs = GetTexture("Assets/Fighters/fighter_jumping.png");
 	// --- Cria textura do personagem andando
 	std::vector<SDL_Texture*> player1_movingtexs = std::vector<SDL_Texture*>();
-	for (int i = 1; i <= 5; i++) {
-		player1_movingtexs.push_back(GetTexture("Assets/Fighters/deejay/deejay_walk_" + std::to_string(i) + ".png"));
+	for (int i = 1; i <= 12; i++) {
+		player1_movingtexs.push_back(GetTexture("Assets/Fighters/" + Player1CharacterName + "/" + Player1CharacterName + "_walk_" + std::to_string(i) + ".png"));
 	}
 	// --- Cria textura do personagem batendo
 	std::vector<SDL_Texture*> player1_punchingtexs = std::vector<SDL_Texture*>();
 	for (int i = 1; i <= 8; i++) {
-		player1_punchingtexs.push_back(GetTexture("Assets/Fighters/deejay/deejay_punch_" + std::to_string(i) + ".png"));
+		player1_punchingtexs.push_back(GetTexture("Assets/Fighters/" + Player1CharacterName + "/" + Player1CharacterName + "_punch_" + std::to_string(i) + ".png"));
+	}
+	// --- Cria textura do personagem morrendo
+	std::vector<SDL_Texture*> player1_dieingtexs = std::vector<SDL_Texture*>();
+	for (int i = 1; i <= 8; i++) {
+		player1_dieingtexs.push_back(GetTexture("Assets/Fighters/" + Player1CharacterName + "/" + Player1CharacterName + "_death_" + std::to_string(i) + ".png"));
 	}
 	// --- Cria a sprite
 	CharacterSpriteComponent* player1_sprite = new CharacterSpriteComponent(ic, 150);
@@ -295,17 +302,17 @@ void Game::LoadData()
 	// --- Aplica gravidade a p1
 	PhysicsComponent* pc_bot = new PhysicsComponent(mBot);
 	// --- Cria textura do personagem parado
-	SDL_Texture* bot_idlingtexs = GetTexture("Assets/Fighters/Cody/cody_idle.png");
+	SDL_Texture* bot_idlingtexs = GetTexture("Assets/Fighters/" + Player2CharacterName + "/" + Player2CharacterName + "_idle.png");
 	// --- Cria textura do personagem pulando
 	std::vector<SDL_Texture*> bot_jumpingtexs = std::vector<SDL_Texture*>();
 	for (int i = 1; i <= 2; i++) {
-		bot_jumpingtexs.push_back(GetTexture("Assets/Fighters/Cody/cody_jump_" + std::to_string(i) + ".png"));
+		bot_jumpingtexs.push_back(GetTexture("Assets/Fighters/" + Player2CharacterName + "/" + Player2CharacterName + "_jump_" + std::to_string(i) + ".png"));
 	}
 	//SDL_Texture* bot_jumpingtexs = GetTexture("Assets/Fighters/fighter_jumping.png");
 	// --- Cria textura do personagem andando
 	std::vector<SDL_Texture*> bot_movingtexs = std::vector<SDL_Texture*>();
 	for (int i = 1; i <= 12; i++) {
-		bot_movingtexs.push_back(GetTexture("Assets/Fighters/Cody/cody_walk_" + std::to_string(i) + ".png"));
+		bot_movingtexs.push_back(GetTexture("Assets/Fighters/" + Player2CharacterName + "/" + Player2CharacterName + "_walk_" + std::to_string(i) + ".png"));
 	}
 	// --- Inputs do bot
 	InputComponent* bot_ic = new InputComponent(mBot);
@@ -404,12 +411,12 @@ SDL_Texture* Game::GetTexture(const std::string& fileName)
 
 Character* Game::GetOpponent(class Character* player)
 {
-	// Player 2 e Bot não podem jogar um contra o outro, 
-	// entao se for um destes o adversario é o player 1
+	// Player 2 e Bot nï¿½o podem jogar um contra o outro, 
+	// entao se for um destes o adversario ï¿½ o player 1
 	if (player == mPlayer2 || player == mBot)
 		return mPlayer1;
-	// Player 2 e Bot não podem jogar ao mesmo tempo,
-	// então se player for player 1, quem não for null é o adversario
+	// Player 2 e Bot nï¿½o podem jogar ao mesmo tempo,
+	// entï¿½o se player for player 1, quem nï¿½o for null ï¿½ o adversario
 	if (mPlayer2 != nullptr)
 	{
 		return mPlayer2;
