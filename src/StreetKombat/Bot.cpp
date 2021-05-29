@@ -25,14 +25,10 @@ void Bot::UpdateActor(float deltaTime)
 	switch (mCurrentState)
 	{
 	case E0:
-		if (mHP < 0.3)
-			new_state = E7;
-		else if (distance > 450)
-			new_state = E1;
-		else if (distance < 350)
-			new_state = E3;
-		else
-			new_state = E2;
+		if (mHP < 0.3)						new_state = E7;
+		else if (distance > 450)	new_state = E1;
+		else if (distance < 350)	new_state = E3;
+		else											new_state = E2;
 		break;
 	case E1:
 		RushIn(player, deltaTime);
@@ -46,12 +42,9 @@ void Bot::UpdateActor(float deltaTime)
 		new_state = E4;
 		break;
 	case E4:
-		if (rand < 0.03)
-			new_state = E5;
-		else if (rand < 0.06)
-			new_state = E6;
-		else
-			new_state = E0;
+		if (rand < 0.03)			new_state = E5;
+		else if (rand < 0.06) new_state = E6;
+		else									new_state = E0;
 		break;
 	case E5:
 		Attack(player, deltaTime);
@@ -62,10 +55,8 @@ void Bot::UpdateActor(float deltaTime)
 		new_state = E0;
 		break;
 	case E7:
-		if (distance > 400)
-			new_state = E8;
-		else
-			new_state = E9;
+		if (distance > 400) new_state = E8;
+		else								new_state = E9;
 		break;
 	case E8:
 		RushIn(player, deltaTime);
@@ -76,12 +67,9 @@ void Bot::UpdateActor(float deltaTime)
 		new_state = E10;
 		break;
 	case E10:
-		if (rand < 0.08)
-			new_state = E11;
-		else if (rand < 0.16)
-			new_state = E12;
-		else
-			new_state = E7;
+		if (rand < 0.08)			new_state = E11;
+		else if (rand < 0.16) new_state = E12;
+		else									new_state = E7;
 		break;
 	case E11:
 		Attack(player, deltaTime);
@@ -91,10 +79,7 @@ void Bot::UpdateActor(float deltaTime)
 		Jump();
 		new_state = E7;
 		break;
-	default:
-		break;
 	}
-
 	mCurrentState = new_state;
 }
 

@@ -88,11 +88,13 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 	
 	mSpeed = mOwner->GetDirection()*currentSpeed;
 	
-	// Calculate vertical speed for MoveComponent
 	float verticalSpeed = 0.0f;
+
+
 	if (keyState[mJumpKey] && // Se apertou a tecla pra pular
-			!isJumping) // Não é a tecla pra pular que continua apertada
+			!isJumping) // A tecla não estava apertada nas iterações anteriores
 	{
+		// Aplica força vertical para jogar o personagem para cima
 		mOwner->applyForce(Vector2(0, -250.0f));
 	}
 

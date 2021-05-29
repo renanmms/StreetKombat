@@ -21,7 +21,6 @@ PhysicsComponent::PhysicsComponent(class Actor* owner, int updateOrder)
 
 void PhysicsComponent::Update(float deltaTime)
 {
-	
 	float multiplier = 5;
 
 	std::vector<Vector2>* forces = mOwner->getCurrentForces();
@@ -34,7 +33,7 @@ void PhysicsComponent::Update(float deltaTime)
 	while (!forces->empty())
 	{
 		F += forces->back(); // soma a força a F total
-		forces->pop_back(); // remove a força que ja foi aplicadaz
+		forces->pop_back(); // remove a força que ja foi aplicada
 	}
 	// --- Calcula a aceleracao total
 	Vector2 a = Vector2(F.x/mass, F.y/mass);
@@ -45,7 +44,6 @@ void PhysicsComponent::Update(float deltaTime)
 	mSpeed += a;
 
 	// --- Gera a nova posicao
-	// Consideramos gravidade na atualização da posição apenas para ela nao acumular velocidade o tempo todo
 	pos += mSpeed * deltaTime * multiplier;
 
 	// --- Aplica os limites da tela

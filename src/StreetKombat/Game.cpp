@@ -216,47 +216,32 @@ void Game::GenerateOutput()
 
 void Game::drawLifeBar(float hp, int pos_x, int pos_y, int width)
 {
-
 	// contorno
 	SDL_SetRenderDrawColor(mRenderer, 255, 255, 0, 255);
 	SDL_Rect contorno{
 		static_cast<int>(pos_x - 4), // x
 		static_cast<int>(pos_y - 5), // y
-	width+8,
-	38
+		width+8, 38
 	};
 	SDL_RenderFillRect(mRenderer, &contorno);
-
 	// background
 	SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
 	SDL_Rect bg{
 		static_cast<int>(pos_x),
 		static_cast<int>(pos_y),
-	width,
-	30
+		width, 30
 	};
-
 	SDL_RenderFillRect(mRenderer, &bg);
-
 	// HP
-
-	if (hp > 0.7)
-		SDL_SetRenderDrawColor(mRenderer, 63, 154, 40, 255);
-
-	else if (hp > 0.4)
-		SDL_SetRenderDrawColor(mRenderer, 187, 230, 87, 255);
-	else
-		SDL_SetRenderDrawColor(mRenderer, 255, 0, 0, 255);
-
+	if (hp > 0.7)				SDL_SetRenderDrawColor(mRenderer, 63, 154, 40, 255);
+	else if (hp > 0.4)  SDL_SetRenderDrawColor(mRenderer, 187, 230, 87, 255);
+	else								SDL_SetRenderDrawColor(mRenderer, 255, 0, 0, 255);
 	SDL_Rect bar{
 		static_cast<int>(pos_x),
 		static_cast<int>(pos_y),
-	hp * width,
-	30
+		hp * width, 30
 	};
-
 	SDL_RenderFillRect(mRenderer, &bar);
-
 }
 
 void Game::drawText(SDL_Surface* screen, int x, int y, int w, int h, char* texto)

@@ -24,13 +24,11 @@ void CharacterSpriteComponent::ProcessInput(const uint8_t* keyState)
 		iteration_state = STATE_PUNCH;
 	}
 
-
 	if (current_state != iteration_state)
 	{
 		switch (iteration_state)
 		{
 		case STATE_JUMPING:
-			// TODO: Colocar cooldown no pulo
 			ChangeTexture(mJumpingTextures, jumpingTextureFPS);
 			break;
 		case STATE_MOVING:
