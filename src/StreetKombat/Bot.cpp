@@ -62,7 +62,7 @@ void Bot::UpdateActor(float deltaTime)
 		new_state = E0;
 		break;
 	case E7:
-		if (distance > 600)
+		if (distance > 400)
 			new_state = E8;
 		else
 			new_state = E9;
@@ -78,7 +78,7 @@ void Bot::UpdateActor(float deltaTime)
 	case E10:
 		if (rand < 0.08)
 			new_state = E11;
-		else if (rand < 0.12)
+		else if (rand < 0.16)
 			new_state = E12;
 		else
 			new_state = E7;
@@ -124,7 +124,8 @@ void Bot::RushIn(Character* player, float deltaTime)
 
 void Bot::Attack(Character* player, float deltaTime)
 {
-	new Special(GetGame(), this);
+	Special* s = new Special(GetGame(), this);
+	s->SetPosition(GetPosition() + GetDirection() * Vector2(10, 0));
 }
 
 void Bot::Jump()

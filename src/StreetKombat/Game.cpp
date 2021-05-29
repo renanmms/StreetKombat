@@ -20,6 +20,7 @@
 #include "InputComponent.h"
 #include "SpriteComponent.h"
 #include "SpecialComponent.h"
+#include "CharacterSpriteComponent.h"
 // Utils
 #include "Random.h"
 // Bibliotecas
@@ -27,7 +28,6 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
-#include "CharacterSpriteComponent.h"
 
 
 Game::Game()
@@ -299,8 +299,8 @@ void Game::LoadData()
 	mWalls.push_back(new BoundingBoxComponent(left_wall, 10.0f, 768.0f));
 	// --- Parede direita
 	Actor* right_wall = new Actor(this);
-	left_wall->SetPosition(Vector2(1019.0f, 384.0f));
-	mWalls.push_back(new BoundingBoxComponent(left_wall, 10.0f, 768.0f));
+	right_wall->SetPosition(Vector2(1019.0f, 384.0f));
+	mWalls.push_back(new BoundingBoxComponent(right_wall, 10.0f, 768.0f));
 
 	// ------ PLAYER 1 ------ \\
 	// --- Cria o personagem do jogador 1
@@ -519,19 +519,3 @@ void Game::RemoveSprite(SpriteComponent* sprite)
 	if (iter != mSprites.end())
 		mSprites.erase(iter);
 }
-
-/*void Game::LoadMenu()
-{
-	// mostra o menu inicial
-
-	SDL_Surface* screen = SDL_GetWindowSurface( mWindow );
-	Uint32 black = SDL_MapRGB(screen->format, 0, 0, 0);
-	Uint32 red = SDL_MapRGB(screen->format, 255, 0, 0);
-	SDL_FillRect(screen, NULL, black);
-	SDL_UpdateWindowSurface(mWindow);
-
-	SDL_Texture* menu_game_logo = GetTexture("Assets/Fighters/fighter_idle.png");
-
-
-
-}*/

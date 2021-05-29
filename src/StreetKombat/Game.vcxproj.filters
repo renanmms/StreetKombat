@@ -1,158 +1,147 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="src">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="src\Actors">
-      <UniqueIdentifier>{3bde7b78-fd4b-4f63-9f6d-50243af47fc2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Actors\header">
-      <UniqueIdentifier>{082e2c9e-2e26-4001-992c-8465459a9f2e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Actors\source">
-      <UniqueIdentifier>{aaf2d666-21b5-4493-a329-a64d22f2a077}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Components">
-      <UniqueIdentifier>{aab29538-2f2b-4a40-a84e-b6550817f594}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Components\header">
-      <UniqueIdentifier>{9aca2901-c99f-4a98-8a49-46912d1d2547}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Components\source">
-      <UniqueIdentifier>{4cf7fd69-f9aa-4f12-815e-13f261f4ec5e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Utils">
-      <UniqueIdentifier>{d016decc-7969-4e62-8041-4274074b25ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Utils\header">
-      <UniqueIdentifier>{43309c7b-8d92-443e-9bde-673f897c558b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Utils\source">
-      <UniqueIdentifier>{3a0d823a-9386-481e-9338-da68c316ded2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Scenes">
-      <UniqueIdentifier>{24e91bdb-40ca-4a2c-b6c8-1dba1d7338c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Scenes\header">
-      <UniqueIdentifier>{690bb626-9ab5-4759-8490-fc93eb1d0bb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Scenes\source">
-      <UniqueIdentifier>{51368fa0-3981-4c0d-83ea-dd75e05975f1}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>src\Actors\source</Filter>
+    <ClCompile Include="Bot.cpp">
+      <Filter>Actors\Source</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>src\Actors\source</Filter>
-    </ClCompile>
-    <ClCompile Include="CircleComponent.cpp">
-      <Filter>src\Components\source</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>src\Components\source</Filter>
-    </ClCompile>
-    <ClCompile Include="InputComponent.cpp">
-      <Filter>src\Components\source</Filter>
-    </ClCompile>
-    <ClCompile Include="Math.cpp">
-      <Filter>src\Utils\source</Filter>
-    </ClCompile>
-    <ClCompile Include="Random.cpp">
-      <Filter>src\Utils\source</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteComponent.cpp">
-      <Filter>src\Components\source</Filter>
+      <Filter>Actors\Source</Filter>
     </ClCompile>
     <ClCompile Include="Special.cpp">
-      <Filter>src\Actors\source</Filter>
-    </ClCompile>
-    <ClCompile Include="BoundingBoxComponent.cpp">
-      <Filter>src\Components\source</Filter>
+      <Filter>Actors\Source</Filter>
     </ClCompile>
     <ClCompile Include="AnimSpriteComponent.cpp">
-      <Filter>src\Components\source</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="SpecialComponent.cpp">
-      <Filter>src\Components\source</Filter>
+    <ClCompile Include="BoundingBoxComponent.cpp">
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="CharacterSpriteComponent.cpp">
-      <Filter>src\Components\source</Filter>
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleComponent.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="HitBoxComponent.cpp">
-      <Filter>src\Components\source</Filter>
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsComponent.cpp">
-      <Filter>src\Components\source</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Bot.cpp">
-      <Filter>src\Actors\source</Filter>
+    <ClCompile Include="SpecialComponent.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Actors\Source</Filter>
+    </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>src\Scenes\source</Filter>
+      <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>src\Scenes\source</Filter>
+    <ClCompile Include="Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Utils\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>Utils\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Actor.h">
-      <Filter>src\Actors\header</Filter>
+    <ClInclude Include="Bot.h">
+      <Filter>Actors\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>src\Actors\header</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleComponent.h">
-      <Filter>src\Components\header</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>src\Components\header</Filter>
-    </ClInclude>
-    <ClInclude Include="InputComponent.h">
-      <Filter>src\Components\header</Filter>
-    </ClInclude>
-    <ClInclude Include="Math.h">
-      <Filter>src\Utils\header</Filter>
-    </ClInclude>
-    <ClInclude Include="Random.h">
-      <Filter>src\Utils\header</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteComponent.h">
-      <Filter>src\Components\header</Filter>
+      <Filter>Actors\Headers</Filter>
     </ClInclude>
     <ClInclude Include="Special.h">
-      <Filter>src\Actors\header</Filter>
-    </ClInclude>
-    <ClInclude Include="BoundingBoxComponent.h">
-      <Filter>src\Components\header</Filter>
+      <Filter>Actors\Headers</Filter>
     </ClInclude>
     <ClInclude Include="AnimSpriteComponent.h">
-      <Filter>src\Components\header</Filter>
+      <Filter>Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="SpecialComponent.h">
-      <Filter>src\Components\header</Filter>
-    </ClInclude>
-    <ClInclude Include="HitBoxComponent.h">
-      <Filter>src\Components\header</Filter>
+    <ClInclude Include="BoundingBoxComponent.h">
+      <Filter>Components\Headers</Filter>
     </ClInclude>
     <ClInclude Include="CharacterSpriteComponent.h">
-      <Filter>src\Components\header</Filter>
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleComponent.h">
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="HitBoxComponent.h">
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>Components\Headers</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsComponent.h">
-      <Filter>src\Components\header</Filter>
+      <Filter>Components\Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Bot.h">
-      <Filter>src\Actors\header</Filter>
+    <ClInclude Include="SpecialComponent.h">
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Components\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Actors\Headers</Filter>
+    </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>src\Scenes\header</Filter>
+      <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>src\Scenes\header</Filter>
+    <ClInclude Include="Math.h">
+      <Filter>Utils\Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Utils\Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Actors">
+      <UniqueIdentifier>{9dc64ed8-1be2-47b5-908b-413ac1ea4acf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actors\Headers">
+      <UniqueIdentifier>{a7aa8a32-b405-47cd-9bdf-f8ec4e4dcba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actors\Source">
+      <UniqueIdentifier>{69a96e0d-7d82-4cd1-9f50-4b0cdac2963a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{401a030f-3240-4882-8214-27fbe8dab027}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Headers">
+      <UniqueIdentifier>{ed068892-cda5-4000-8433-b2f11777a28d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Source">
+      <UniqueIdentifier>{307af717-d96e-4440-a77b-d617af8c5d88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{534b122e-04a9-483c-9c5c-3b041169f1fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{931159cc-587d-4500-8176-0909bf590ef9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{f9efd027-2d7b-4da2-b4f6-e80e168b5a20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Headers">
+      <UniqueIdentifier>{e4178e2a-6207-42bf-9590-51f4d9263fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Source">
+      <UniqueIdentifier>{223b9517-b504-4bf5-a9e4-8e5cfc1fa397}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
